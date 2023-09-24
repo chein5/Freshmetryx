@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login_User">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bg_login" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="277dp"
+        android:layout_height="245dp"
+        android:layout_marginStart="67dp"
+        android:layout_marginTop="85dp"
+        android:layout_marginEnd="67dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/app_white_icon" />
+
+    <EditText
+        android:id="@+id/txtMail_Login"
+        android:layout_width="317dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="168dp"
+        android:layout_marginEnd="60dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Ingrese correo"
+        android:textAlignment="center"
+        android:textColor="#02060D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <EditText
+        android:id="@+id/txtPass_Login"
+        android:layout_width="319dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="60dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Ingrese contraseña"
+        android:textAlignment="center"
+        android:textColor="#02060D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtMail_Login" />
+
+    <ImageButton
+        android:id="@+id/btnLogin"
+        android:layout_width="63dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="174dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="174dp"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="#02060D"
+        android:rotation="180"
+        android:tint="#F4F0F0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPass_Login"
+        app:srcCompat="?android:attr/actionModeCloseDrawable"
+        tools:ignore="SpeakableTextPresentCheck,UseAppTint" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
