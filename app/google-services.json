@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "456865250865",
+    "project_id": "freshmetryx-aa049",
+    "storage_bucket": "freshmetryx-aa049.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:456865250865:android:29aef2b7031021fe6c9f10",
+        "android_client_info": {
+          "package_name": "com.freshmetryx"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASo8bfWsTetKX9TB1EGPuh_18oCFBJ3wE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
