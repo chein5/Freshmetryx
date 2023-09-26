@@ -18,7 +18,7 @@
         app:srcCompat="@drawable/bg_home" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/txtValor_Scan"
         android:layout_width="341dp"
         android:layout_height="36dp"
         android:layout_marginStart="35dp"
@@ -30,10 +30,10 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/txtStock_Scan" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/txtCodigo_Scan"
         android:layout_width="346dp"
         android:layout_height="31dp"
         android:layout_marginStart="35dp"
@@ -46,7 +46,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintTop_toBottomOf="@+id/txtValor_Scan" />
 
     <TextView
         android:id="@+id/textView3"
@@ -81,7 +81,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_activarQR" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/txtNombre_Scan"
         android:layout_width="341dp"
         android:layout_height="36dp"
         android:layout_marginStart="35dp"
@@ -96,7 +96,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/txtStock_Scan"
         android:layout_width="341dp"
         android:layout_height="36dp"
         android:layout_marginStart="35dp"
@@ -108,7 +108,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/txtNombre_Scan" />
 
     <Button
         android:id="@+id/btn_activarQR"

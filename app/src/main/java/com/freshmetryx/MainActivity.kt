@@ -8,6 +8,7 @@ import android.os.PersistableBundle
 import android.util.Log
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import com.freshmetryx.databinding.ActivityMainBinding
 import com.google.firebase.firestore.ktx.firestore
@@ -16,7 +17,11 @@ import com.google.zxing.integration.android.IntentIntegrator
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-
+    val db = Firebase.firestore
+    private lateinit var txtNombre_Scan : TextView
+    private lateinit var txtStock_Scan : TextView
+    private lateinit var txtValor_Scan : TextView
+    private lateinit var txtCodigo_Scan : TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -24,7 +29,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.btnActivarQR.setOnClickListener{( initScanner())}
-        val db = Firebase.firestore
+
+
     }
     //funcion que nos permitira abrir el scanner
     private fun initScanner(){
@@ -49,11 +55,51 @@ class MainActivity : AppCompatActivity() {
                         Log.w(TAG, "Error adding document", e)
                     }
                 Toast.makeText(this,"el valor escaneado es: "+ result.contents, Toast.LENGTH_LONG ).show()
+                if (result != null){
+                    mostrarDatos(result.contents.toString())
+                }
             }
         }else{
             super.onActivityResult(requestCode, resultCode, data)
 
         }
+    }
+
+    fun mostrarDatos(consulta : String){
+        val db = Firebase.firestore
+        Log.e(TAG, "Numero de consulta: $consulta")
+        txtNombre_Scan = findViewById(R.id.txtNombre_Scan)
+        txtStock_Scan = findViewById(R.id.txtStock_Scan)
+        txtValor_Scan = findViewById(R.id.txtValor_Scan)
+        txtCodigo_Scan= findViewById(R.id.txtCodigo_Scan)
+        val docRef= db.collection("Productos").document(consulta)
+
+        docRef.get()
+            .addOnSuccessListener { documentSnapshot ->
+                if (documentSnapshot.exists()) {
+                    Log.e(TAG, "Encontro el dato")
+                    // Obtener los datos del documento
+                    val data = documentSnapshot.data
+
+                    // Mostrar los datos en los TextField
+                    if (data != null) {
+                        // Suponiendo que tienes TextField llamados textfield1, textfield2, etc.
+                        txtNombre_Scan.setText(data["Nombre"].toString())
+                        txtStock_Scan.setText(data["Stock"].toString())
+                        txtValor_Scan.setText(data["Valor"].toString())
+                        txtNombre_Scan.setText("Codigo: "+ consulta)
+                        // Añade más líneas para otros campos según sea necesario
+                    }
+                } else {
+                    Toast.makeText(this,"No se encontro el dato", Toast.LENGTH_LONG ).show()
+                }
+            }
+            .addOnFailureListener { e ->
+                // Manejar errores en la lectura del documento
+                Log.e(TAG, "Error al obtener documento: $e")
+            }
+
+
     }
 
 }
