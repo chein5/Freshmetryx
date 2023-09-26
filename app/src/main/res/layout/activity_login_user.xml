@@ -40,38 +40,21 @@
         android:layout_marginEnd="60dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
+        android:hint="Ingrese correo"
         android:inputType="text"
-        android:text="Ingrese correo"
         android:textAlignment="center"
         android:textColor="#02060D"
+        android:textColorHint="#322F2F"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-
-    <EditText
-        android:id="@+id/txtPass_Login"
-        android:layout_width="319dp"
-        android:layout_height="63dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="60dp"
-        android:background="@drawable/rounded_edittext"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Ingrese contraseña"
-        android:textAlignment="center"
-        android:textColor="#02060D"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.535"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtMail_Login" />
 
     <ImageButton
         android:id="@+id/btnLogin"
         android:layout_width="63dp"
         android:layout_height="54dp"
         android:layout_marginStart="174dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="174dp"
         android:background="@drawable/rounded_button"
         android:backgroundTint="#02060D"
@@ -83,5 +66,25 @@
         app:layout_constraintTop_toBottomOf="@+id/txtPass_Login"
         app:srcCompat="?android:attr/actionModeCloseDrawable"
         tools:ignore="SpeakableTextPresentCheck,UseAppTint" />
+
+    <EditText
+        android:id="@+id/txtPass_Login"
+        android:layout_width="319dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="60dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:hint="Ingrese contraseña"
+        android:inputType="text"
+        android:password="true"
+        android:textAlignment="center"
+        android:textColor="#02060D"
+        android:textColorHint="#322D2D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtMail_Login" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
