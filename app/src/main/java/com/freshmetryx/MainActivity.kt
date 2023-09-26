@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.freshmetryx.databinding.ActivityMainBinding
+import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.zxing.integration.android.IntentIntegrator
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        FirebaseApp.initializeApp(this)
         //Configuracion del view Binding (es una funcion que te permite escribir codigo mas facilmente para interactuar con las vistas)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -83,11 +85,12 @@ class MainActivity : AppCompatActivity() {
 
                     // Mostrar los datos en los TextField
                     if (data != null) {
+                        Toast.makeText(this,"Datos encontrados", Toast.LENGTH_LONG ).show()
                         // Suponiendo que tienes TextField llamados textfield1, textfield2, etc.
-                        txtNombre_Scan.setText(data["Nombre"].toString())
-                        txtStock_Scan.setText(data["Stock"].toString())
-                        txtValor_Scan.setText(data["Valor"].toString())
-                        txtNombre_Scan.setText("Codigo: "+ consulta)
+                        txtNombre_Scan.setText("Nombre: "+data["Nombre"].toString())
+                        txtStock_Scan.setText("Stock: "+data["Stock"].toString())
+                        txtValor_Scan.setText("Valor: " +data["Valor"].toString())
+                        txtCodigo_Scan.setText("Codigo: "+ consulta)
                         // Añade más líneas para otros campos según sea necesario
                     }
                 } else {
