@@ -14,10 +14,25 @@ class Home : AppCompatActivity() {
 
         //Botones
         lateinit var btnQr : ImageButton
+        lateinit var btn_ventaHome : ImageButton
+
+        //Activar boton de scanner
         btnQr = findViewById(R.id.btnEscaner)
         btnQr.setOnClickListener {
             val intent = Intent(this, MainActivity ::class.java)
             startActivity(intent)
         }
+
+        //Iniciar una venta
+        btn_ventaHome =findViewById(R.id.btn_ventaHome)
+        btn_ventaHome.setOnClickListener {
+            val intent = Intent(this, Venta_Carrito ::class.java)
+            startActivity(intent)
+        }
+
+
+
+
+
     }
 }

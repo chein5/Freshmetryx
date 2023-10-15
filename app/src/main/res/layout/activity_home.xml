@@ -189,7 +189,7 @@
         android:backgroundTint="#00FFFFFF"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton9"
+        app:layout_constraintStart_toEndOf="@+id/btn_ventaHome"
         app:srcCompat="@drawable/inicio_icon"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -205,7 +205,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
-        android:id="@+id/imageButton9"
+        android:id="@+id/btn_ventaHome"
         android:layout_width="82dp"
         android:layout_height="64dp"
         android:backgroundTint="#00FFFFFF"

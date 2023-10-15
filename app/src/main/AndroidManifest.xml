@@ -25,7 +25,8 @@
             android:exported="false" />
         <activity
             android:name=".Venta_Carrito"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat"/>
         <activity
             android:name=".Menu_Ventas"
             android:exported="false" />
