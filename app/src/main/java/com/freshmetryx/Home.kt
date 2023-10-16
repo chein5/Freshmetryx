@@ -26,7 +26,7 @@ class Home : AppCompatActivity() {
         //Iniciar una venta
         btn_ventaHome =findViewById(R.id.btn_ventaHome)
         btn_ventaHome.setOnClickListener {
-            val intent = Intent(this, Venta_Carrito ::class.java)
+            val intent = Intent(this, Menu_Ventas ::class.java)
             startActivity(intent)
         }
 

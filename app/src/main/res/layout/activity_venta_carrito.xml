@@ -45,8 +45,8 @@
         android:id="@+id/list_carrito"
         android:layout_width="260dp"
         android:layout_height="285dp"
-        android:layout_marginStart="66dp"
-        android:layout_marginTop="85dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="80dp"
         android:background="#E8E3E3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_scanqrCarrito">
@@ -145,7 +145,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
-        android:id="@+id/btn_confirmar"
+        android:id="@+id/btn_confirmarVenta"
         android:layout_width="205dp"
         android:layout_height="71dp"
         android:layout_marginTop="35dp"
