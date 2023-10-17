@@ -1,5 +1,6 @@
 package com.freshmetryx
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Intent
 import android.os.Build
@@ -9,6 +10,7 @@ import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.ImageButton
 import android.widget.ListView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.freshmetryx.databinding.ActivityVentaCarritoBinding
@@ -31,6 +33,8 @@ class Venta_Carrito : AppCompatActivity() {
     lateinit var dic_precio : MutableMap <String,Long>
     lateinit var carrito: Carrito
     lateinit var btn_crearVenta : ImageButton
+    lateinit var txt_totalVenta : TextView
+    @SuppressLint("MissingInflatedId")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +51,7 @@ class Venta_Carrito : AppCompatActivity() {
         dic_precio = mutableMapOf()
         carrito = Carrito()
         btn_crearVenta = findViewById(R.id.btn_confirmarVenta)
+        txt_totalVenta = findViewById(R.id.txt_totalVenta)
         btn_crearVenta.setOnClickListener {
             agregarDatos(lista_ayuda)
         }
@@ -169,6 +174,11 @@ class Venta_Carrito : AppCompatActivity() {
         )
         listView_carrito.adapter = adapter
         adapter.notifyDataSetChanged()
+        var total = 0L
+        for (ayuda in lista_ayuda) {
+            total += ayuda.cantidad_producto * ayuda.precio_producto
+        }
+        txt_totalVenta.setText("SubTotal: $total")
         btn_crearVenta.setOnClickListener {
             agregarDatos(lista_ayuda)
         }

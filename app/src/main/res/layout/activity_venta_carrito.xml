@@ -106,7 +106,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/txt_totalVenta"
         android:layout_width="255dp"
         android:layout_height="33dp"
         android:layout_marginStart="69dp"
@@ -140,7 +140,7 @@
         android:backgroundTint="#00FFFFFF"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16"
+        app:layout_constraintTop_toBottomOf="@+id/txt_totalVenta"
         app:srcCompat="@drawable/anular_button"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -152,7 +152,7 @@
         android:backgroundTint="#00FFFFFF"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16"
+        app:layout_constraintTop_toBottomOf="@+id/txt_totalVenta"
         app:srcCompat="@drawable/confirmar_button"
         tools:ignore="SpeakableTextPresentCheck" />
 
