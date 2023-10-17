@@ -1,9 +1,11 @@
 package com.freshmetryx
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageButton
 import android.widget.TextView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -12,11 +14,18 @@ class Detalle_Carrito : AppCompatActivity() {
     lateinit var txt_totalDetalle : TextView
     lateinit var txt_cantProdDet : TextView
     lateinit var txt_TotSubDet : TextView
+    lateinit var btnListo : ImageButton
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalle_carrito)
 
+        //Accion del boton listo
+        btnListo = findViewById(R.id.btnListoCompra);
+        btnListo.setOnClickListener {
+            val intent = Intent(this, Venta_Resultado ::class.java)
+            startActivity(intent)
+        }
 
         txt_totalDetalle = findViewById(R.id.txt_totalDetalle)
         txt_cantProdDet = findViewById(R.id.txt_cantProdDet)
@@ -45,7 +54,7 @@ class Detalle_Carrito : AppCompatActivity() {
                             totalGeneral += totalProducto
                         }
                         txt_TotSubDet.setText("Subtotal: $totalGeneral")
-                        txt_cantProdDet.setText("C. de prod: $cant_prod")
+                        txt_cantProdDet.setText("Cant Prod: $cant_prod")
                         totalGeneral= totalGeneral*0.19+totalGeneral
                         txt_totalDetalle.setText("Total: $totalGeneral")
                         // El total general está en totalGeneral

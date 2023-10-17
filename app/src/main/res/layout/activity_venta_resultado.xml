@@ -10,7 +10,7 @@
         android:id="@+id/imageView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,14 +19,15 @@
 
     <ImageButton
         android:id="@+id/otraventa_button"
-        android:layout_width="357dp"
-        android:layout_height="101dp"
+        android:layout_width="290dp"
+        android:layout_height="65dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="527dp"
+        android:layout_marginTop="520dp"
         android:layout_marginEnd="20dp"
         android:backgroundTint="#00FFFFFF"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/otraventa_button"
@@ -34,8 +35,8 @@
 
     <ImageButton
         android:id="@+id/descargarPDF_button"
-        android:layout_width="342dp"
-        android:layout_height="97dp"
+        android:layout_width="289dp"
+        android:layout_height="76dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="26dp"

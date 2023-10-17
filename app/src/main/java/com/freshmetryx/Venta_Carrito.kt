@@ -55,10 +55,7 @@ class Venta_Carrito : AppCompatActivity() {
         btn_crearVenta.setOnClickListener {
             agregarDatos(lista_ayuda)
         }
-
-
     }
-
 
     //funcion que nos permitira abrir el scanner
     private fun initScanner(){
@@ -85,7 +82,6 @@ class Venta_Carrito : AppCompatActivity() {
             }
         }else{
             super.onActivityResult(requestCode, resultCode, data)
-
         }
     }
 
@@ -104,7 +100,6 @@ class Venta_Carrito : AppCompatActivity() {
                     // Mostrar los datos en los TextField
                     if (data != null) {
                         Log.d("CORRECTO","encontrado")
-
                     }
                 } else {
                     Toast.makeText(this,"No se encontro el dato", Toast.LENGTH_LONG ).show()
@@ -114,8 +109,6 @@ class Venta_Carrito : AppCompatActivity() {
                 // Manejar errores en la lectura del documento
                 Log.e(ContentValues.TAG, "Error al obtener documento: $e")
             }
-
-
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -145,14 +138,11 @@ class Venta_Carrito : AppCompatActivity() {
 
                 llenarList(dic_carrito,dic_precio)
 
-
-
             } else {
                 Toast.makeText(this, "Producto no encontrado", Toast.LENGTH_SHORT).show()
             }
         }
     }
-
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun llenarList(dic_carrito: MutableMap<String, Long>, dic_precios: MutableMap<String, Long>){

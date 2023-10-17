@@ -47,7 +47,7 @@
         android:layout_height="285dp"
         android:layout_marginStart="72dp"
         android:layout_marginTop="80dp"
-        android:background="#E8E3E3"
+        android:background="#050505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_scanqrCarrito">
 
@@ -68,14 +68,14 @@
 
     <TextView
         android:id="@+id/textView15"
-        android:layout_width="339dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="41dp"
+        android:layout_width="301dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="28dp"
         android:text="Escanee los productos"
         android:textAlignment="center"
         android:textColor="#E7D49E"
-        android:textSize="28sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/icon_user_ventacarrito" />
@@ -95,9 +95,10 @@
 
     <ImageButton
         android:id="@+id/btn_scanqrCarrito"
-        android:layout_width="153dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="21dp"
+        android:layout_width="161dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="4dp"
         android:backgroundTint="#00FFFFFF"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
@@ -109,8 +110,8 @@
         android:id="@+id/txt_totalVenta"
         android:layout_width="255dp"
         android:layout_height="33dp"
-        android:layout_marginStart="69dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="20dp"
         android:text="Total: $"
         android:textAlignment="textStart"
         android:textColor="#151514"
@@ -120,23 +121,11 @@
         app:layout_constraintTop_toBottomOf="@+id/list_carrito" />
 
     <ImageButton
-        android:id="@+id/btn_scanmanual"
-        android:layout_width="204dp"
-        android:layout_height="51dp"
-        android:layout_marginEnd="15dp"
-        android:backgroundTint="#00FFFFFF"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15"
-        app:srcCompat="@drawable/manual_button"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <ImageButton
         android:id="@+id/btn_anular"
         android:layout_width="173dp"
         android:layout_height="74dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
         android:backgroundTint="#00FFFFFF"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
@@ -148,7 +137,8 @@
         android:id="@+id/btn_confirmarVenta"
         android:layout_width="205dp"
         android:layout_height="71dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="#00FFFFFF"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
