@@ -30,7 +30,6 @@ class Venta_Carrito : AppCompatActivity() {
     lateinit var dic_carrito : MutableMap <String,Long>
     lateinit var dic_precio : MutableMap <String,Long>
     lateinit var carrito: Carrito
-
     lateinit var btn_crearVenta : ImageButton
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,11 +47,11 @@ class Venta_Carrito : AppCompatActivity() {
         dic_precio = mutableMapOf()
         carrito = Carrito()
         btn_crearVenta = findViewById(R.id.btn_confirmarVenta)
-        /*btn_crearVenta.setOnClickListener {
-
+        btn_crearVenta.setOnClickListener {
+            agregarDatos(lista_ayuda)
         }
 
-         */
+
     }
 
 
@@ -126,6 +125,7 @@ class Venta_Carrito : AppCompatActivity() {
                 val producto = Producto(nombre.toString(), stock as Long, valor as Long)
                 Log.d("producto", "$producto")
                 dic_precio= mutableMapOf(Pair (nombre.toString(),valor))
+                Log.e("PRECIOOOO", "$dic_precio ")
                 // Verificar si el producto ya está en la lista de ayuda
                 val carritoEnLista = lista_ayuda.find { it.nombre_producto == nombre.toString() }
 
@@ -134,11 +134,11 @@ class Venta_Carrito : AppCompatActivity() {
                     carritoEnLista.cantidad_producto++
                 } else {
                     // Si no está en la lista, agregarlo
-                    val ayuda = Clase_ayuda(nombre.toString(), 1)
+                    val ayuda = Clase_ayuda(nombre.toString(), 1, valor)
                     lista_ayuda.add(ayuda)
                 }
 
-                llenarList(dic_carrito)
+                llenarList(dic_carrito,dic_precio)
 
 
 
@@ -150,7 +150,7 @@ class Venta_Carrito : AppCompatActivity() {
 
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun llenarList(dic_carrito: MutableMap<String, Long>){
+    fun llenarList(dic_carrito: MutableMap<String, Long>, dic_precios: MutableMap<String, Long>){
         /*
         * Aqui se recorre el diccionario para agregar los productos a la lista del carrito
          */
@@ -170,61 +170,39 @@ class Venta_Carrito : AppCompatActivity() {
         listView_carrito.adapter = adapter
         adapter.notifyDataSetChanged()
         btn_crearVenta.setOnClickListener {
-            agregarDatos(dic_carrito)
+            agregarDatos(lista_ayuda)
         }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun agregarDatos(dic_carrito: MutableMap<String, Long>){
-        val nombreProducto = dic_carrito["nombre_producto"].toString()
-        val cantidadProducto = dic_carrito["cantidad_producto"]!!
+    fun agregarDatos(lista_ayuda: ArrayList<Clase_ayuda>) {
 
-        var valorProducto: Long = 0 // Valor por defecto
-
-        for ((nombreC, cantidad ) in dic_carrito) {
-            for ((nombreP, precio) in dic_precio) {
-                if (nombreC == nombreP) {
-                    valorProducto = precio
-                    break // Se encontró el precio, salir del bucle 
-                }
-            }
+        // Crear un mapa que contenga la lista de productos
+        val productosMap = lista_ayuda.map {
+            mapOf(
+                "nombre_producto" to it.nombre_producto,
+                "cantidad_producto" to it.cantidad_producto,
+                "precio_producto" to it.precio_producto
+            )
         }
 
+        // Crear un mapa con los datos para el documento principal
+        val datosBoleta = hashMapOf(
+            "productos" to productosMap
+        )
 
-
-        val carrito = Carrito(nombreProducto, cantidadProducto, valorProducto)
-        // Calcular los valores para la boleta
-        val subtotal = valorProducto * cantidadProducto
-        val iva = 0.19 // Supongamos un IVA del 19% (puedes cambiarlo según tu necesidad)
-        val total = subtotal * (1 + iva)
-        // Agregar el carrito a la colección "Detalle_carrito"
-        db.collection("Detalle_carrito").add(lista_carrito)
+        // Agregar los datos al documento en la colección "Boleta"
+        db.collection("Boleta").add(datosBoleta)
             .addOnSuccessListener { documentReference ->
                 val nuevoId = documentReference.id
-                val boletaData = hashMapOf(
-                    "Cantidad_productos" to cantidadProducto,
-                    "IVA" to iva,
-                    "Ref_detalle" to nuevoId, // El ID generado al agregar el carrito
-                    "Subtotal" to subtotal,
-                    "Total" to total
-                )
-                db.collection("Boleta").add(boletaData)
-                    .addOnSuccessListener { documentReference ->
-                        println("Se ha insertado un nuevo documento de Boleta con el ID: ${documentReference.id}")
-                    }
-                    .addOnFailureListener { e ->
-                        println("Error al agregar el documento de Boleta: $e")
-                    }
-
-
-                println("Se ha insertado un nuevo documento con el ID: $nuevoId")
+                val intent2 = Intent(this, Detalle_Carrito::class.java).apply {
+                    putExtra("id", nuevoId)
+                }
+                startActivity(intent2)
+                println("Se ha insertado un nuevo documento de Boleta con el ID: ${documentReference.id}")
             }
             .addOnFailureListener { e ->
-                println("Error al agregar el documento: $e")
+                println("Error al agregar el documento de Boleta: $e")
             }
-
-
-        // Agregar los datos de la boleta a la colección "Boleta"
-
     }
 }
