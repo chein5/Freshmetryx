@@ -10,6 +10,8 @@ import com.google.firebase.ktx.Firebase
 
 class Detalle_Carrito : AppCompatActivity() {
     lateinit var txt_totalDetalle : TextView
+    lateinit var txt_cantProdDet : TextView
+    lateinit var txt_TotSubDet : TextView
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,8 +19,8 @@ class Detalle_Carrito : AppCompatActivity() {
 
 
         txt_totalDetalle = findViewById(R.id.txt_totalDetalle)
-
-
+        txt_cantProdDet = findViewById(R.id.txt_cantProdDet)
+        txt_TotSubDet = findViewById(R.id.txt_subTotDet)
         val intent = intent
         val id= intent.getStringExtra("id")
         val db = Firebase.firestore
@@ -34,16 +36,20 @@ class Detalle_Carrito : AppCompatActivity() {
                         Log.e("PRODUCTOS", "$productos")
                         // Calcular el total general
                         var totalGeneral = 0.0
-
+                        var cant_prod: Long = 0
                         for (producto in productos) {
                             val cantidad = producto["cantidad_producto"] as Long
                             val precio = producto["precio_producto"] as Long
-
+                                cant_prod=cantidad
                             val totalProducto = cantidad * precio
                             totalGeneral += totalProducto
                         }
+                        txt_TotSubDet.setText("Subtotal: $totalGeneral")
+                        txt_cantProdDet.setText("C. de prod: $cant_prod")
+                        totalGeneral= totalGeneral*0.19+totalGeneral
                         txt_totalDetalle.setText("Total: $totalGeneral")
                         // El total general está en totalGeneral
+
                         println("Total general: $totalGeneral")
                     } else {
                         println("El documento no existe o no contiene la lista de productos.")

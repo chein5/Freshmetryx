@@ -75,7 +75,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
     <TextView
-        android:id="@+id/textView22"
+        android:id="@+id/txt_cantProdDet"
         android:layout_width="312dp"
         android:layout_height="37dp"
         android:layout_marginStart="44dp"
@@ -89,7 +89,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
     <TextView
-        android:id="@+id/textView23"
+        android:id="@+id/txt_subTotDet"
         android:layout_width="312dp"
         android:layout_height="37dp"
         android:layout_marginStart="44dp"
@@ -100,7 +100,7 @@
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView22" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_cantProdDet" />
 
     <TextView
         android:id="@+id/textView24"
@@ -108,13 +108,13 @@
         android:layout_height="37dp"
         android:layout_marginStart="44dp"
         android:layout_marginTop="13dp"
-        android:text="IVA               :"
+        android:text="IVA               :          19%"
         android:textAlignment="textStart"
         android:textColor="#E7D49E"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView23" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_subTotDet" />
 
     <TextView
         android:id="@+id/textView19"
