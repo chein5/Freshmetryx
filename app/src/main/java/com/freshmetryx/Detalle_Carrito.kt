@@ -15,6 +15,7 @@ class Detalle_Carrito : AppCompatActivity() {
     lateinit var txt_cantProdDet : TextView
     lateinit var txt_TotSubDet : TextView
     lateinit var btnListo : ImageButton
+    lateinit var btn_volverDetalle : ImageButton
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +26,10 @@ class Detalle_Carrito : AppCompatActivity() {
         btnListo.setOnClickListener {
             val intent = Intent(this, Venta_Resultado ::class.java)
             startActivity(intent)
+        }
+        btn_volverDetalle= findViewById(R.id.btn_volverDetalle)
+        btn_volverDetalle.setOnClickListener {
+            this.finish()
         }
 
         txt_totalDetalle = findViewById(R.id.txt_totalDetalle)
@@ -49,7 +54,7 @@ class Detalle_Carrito : AppCompatActivity() {
                         for (producto in productos) {
                             val cantidad = producto["cantidad_producto"] as Long
                             val precio = producto["precio_producto"] as Long
-                                cant_prod=cantidad
+                                cant_prod=cantidad+cant_prod
                             val totalProducto = cantidad * precio
                             totalGeneral += totalProducto
                         }

@@ -140,7 +140,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
-        android:id="@+id/imageButton6"
+        android:id="@+id/btn_volverDetalle"
         android:layout_width="170dp"
         android:layout_height="76dp"
         android:layout_marginStart="18dp"
