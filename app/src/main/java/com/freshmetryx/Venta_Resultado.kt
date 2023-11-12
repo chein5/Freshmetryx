@@ -1,5 +1,6 @@
 package com.freshmetryx
 
+import android.Manifest
 import android.Manifest.permission.READ_EXTERNAL_STORAGE
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.content.Intent
@@ -9,12 +10,16 @@ import android.graphics.BitmapFactory
 import android.graphics.Paint
 import android.graphics.Typeface
 import android.graphics.pdf.PdfDocument
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
+import android.provider.Settings
 import android.text.TextPaint
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import java.io.File
@@ -24,14 +29,15 @@ class Venta_Resultado : AppCompatActivity() {
 
     lateinit var btnVolverCompra: ImageButton
     lateinit var btnPDF: ImageButton
-
+    var STORAGE_PERMISSION_CODE = 2106
     var tituloText = "Venta Realizada"
     var descripcionText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-
+    var REQUEST_CODE= 1234
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_venta_resultado)
 
+        solicitarPermisos()
         //Volver al Menu de Ventas
         btnVolverCompra = findViewById(R.id.otraventa_button)
         btnVolverCompra.setOnClickListener {
@@ -42,13 +48,10 @@ class Venta_Resultado : AppCompatActivity() {
         //Accion de Descargar PDF
         btnPDF = findViewById(R.id.descargarPDF_button)
 
-        if (checkPermission()) {
-            Toast.makeText(this, "Permiso Aceptado", Toast.LENGTH_SHORT).show()
-        } else {
-            requestPermission()
-        }
+        //Solicitar permisos para crear el PDF
 
         btnPDF.setOnClickListener {
+            solicitarPermisos()
             generarPDF()
         }
     }
@@ -93,7 +96,7 @@ class Venta_Resultado : AppCompatActivity() {
         pdfDocument.finishPage(pagina1)
 
         //Guardar el PDF
-        val file = File(getExternalFilesDir(null), "Boleta.pdf")
+        val file = File(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), "Boleta.pdf")
         try {
             pdfDocument.writeTo(FileOutputStream(file))
             Toast.makeText(this, "PDF Descargado", Toast.LENGTH_LONG).show()
@@ -105,31 +108,14 @@ class Venta_Resultado : AppCompatActivity() {
 
     }
 
-    //Funciones para los permisos del usuario para descargar el PDF
-    private fun checkPermission(): Boolean {
-        val permission1 = ContextCompat.checkSelfPermission(applicationContext, WRITE_EXTERNAL_STORAGE)
-        val permission2 = ContextCompat.checkSelfPermission(applicationContext, READ_EXTERNAL_STORAGE)
-        return permission1 == PackageManager.PERMISSION_GRANTED && permission2 == PackageManager.PERMISSION_GRANTED
+    //Solicitar permisos para crear el pdf
+    fun solicitarPermisos() {
+        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), REQUEST_CODE)
+        Toast.makeText(this, "Permisos concedidos", Toast.LENGTH_LONG).show()
     }
 
-    private fun requestPermission() {
-        ActivityCompat.requestPermissions(
-            this,
-            arrayOf(WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE),
-            200
-        )
-    }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == 200) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "Permisos concedidos", Toast.LENGTH_SHORT).show()
-                // Ahora puedes realizar la operación que requiere permisos
-            } else {
-                Toast.makeText(this, "Permisos denegados", Toast.LENGTH_SHORT).show()
-                // Maneja el caso en el que el usuario no concedió los permisos
-            }
-        }
-    }
+
+
+
 }
