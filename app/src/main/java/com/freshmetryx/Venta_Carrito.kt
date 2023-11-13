@@ -52,8 +52,9 @@ class Venta_Carrito : AppCompatActivity() {
         carrito = Carrito()
         btn_crearVenta = findViewById(R.id.btn_confirmarVenta)
         txt_totalVenta = findViewById(R.id.txt_totalVenta)
+
         btn_crearVenta.setOnClickListener {
-            agregarDatos(lista_ayuda)
+            agregarDatos(lista_ayuda, 0)
         }
     }
 
@@ -100,6 +101,7 @@ class Venta_Carrito : AppCompatActivity() {
                     // Mostrar los datos en los TextField
                     if (data != null) {
                         Log.d("CORRECTO","encontrado")
+                        Log.d("CORRECTO","$data")
                     }
                 } else {
                     Toast.makeText(this,"No se encontro el dato", Toast.LENGTH_LONG ).show()
@@ -117,9 +119,9 @@ class Venta_Carrito : AppCompatActivity() {
         val docRef = db.collection("Productos").document(id)
         docRef.get().addOnSuccessListener { documentSnapshot ->
             if (documentSnapshot.exists()) {
-                val nombre = documentSnapshot.getString("Nombre")
-                val stock = documentSnapshot.get("Stock")
-                val valor = documentSnapshot.get("Valor")
+                val nombre = documentSnapshot.getString("nombre")
+                val stock = documentSnapshot.get("stock")
+                val valor = documentSnapshot.get("valor")
                 val producto = Producto(nombre.toString(), stock as Long, valor as Long)
                 Log.d("producto", "$producto")
                 dic_precio= mutableMapOf(Pair (nombre.toString(),valor))
@@ -170,12 +172,13 @@ class Venta_Carrito : AppCompatActivity() {
         }
         txt_totalVenta.setText("SubTotal: $total")
         btn_crearVenta.setOnClickListener {
-            agregarDatos(lista_ayuda)
+            agregarDatos(lista_ayuda, total)
         }
     }
 
+    //Funcion para agregar los datos a Firestore despues de presionar el boton de confirmar venta
     @RequiresApi(Build.VERSION_CODES.O)
-    fun agregarDatos(lista_ayuda: ArrayList<Clase_ayuda>) {
+    fun agregarDatos(lista_ayuda: ArrayList<Clase_ayuda>, total:Long ) {
 
         // Crear un mapa que contenga la lista de productos
         val productosMap = lista_ayuda.map {
@@ -186,18 +189,38 @@ class Venta_Carrito : AppCompatActivity() {
             )
         }
 
+        //Suma la cantidad de productos dentro del mapa de la lista_ayuda
+        val total_cantProd = lista_ayuda.sumOf { it.cantidad_producto }
+
         // Crear un mapa con los datos para el documento principal
         val datosBoleta = hashMapOf(
             "productos" to productosMap
         )
 
-        // Agregar los datos al documento en la colección "Boleta"
+        /*Agregar los datos al documento en la colección "Boleta"
+        Se agregan los productos a un mapa dentro de un documento especifico en Firestore
+         */
         db.collection("Boleta").add(datosBoleta)
             .addOnSuccessListener { documentReference ->
                 val nuevoId = documentReference.id
+                var totalConIVA: Long= (total* 0.19+ total).toLong()
+                var detalleMap = hashMapOf<String, Any>("fecha" to Calendar.getInstance().time,
+                    "total" to totalConIVA,
+                    "total_cantProd" to total_cantProd,
+                    )
+                /*
+                 Aqui se agrega la fecha y el total de la venta, asi no se agregan en los mapas individuales
+                 de productos.
+                 */
+                db.collection("Boleta").document(nuevoId).update(detalleMap)
+                    .addOnSuccessListener { documentReference ->
+                        Log.e("Se agrego la fecha", "Se agrego la fecha")
+                    }
+                //Aqui se envia el id de la boleta a la siguiente actividad para mostrar los datos
                 val intent2 = Intent(this, Detalle_Carrito::class.java).apply {
                     putExtra("id", nuevoId)
                 }
+                //Se inicia el proximo activity
                 startActivity(intent2)
                 println("Se ha insertado un nuevo documento de Boleta con el ID: ${documentReference.id}")
             }

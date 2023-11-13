@@ -5,9 +5,7 @@ data class Producto (
     var stock: Long=0,
     var valor: Long=0
 ) {
-    /*
     override fun toString(): String {
-        return "$nombre X $stock PRECIO: $$valor"
+        return "${nombre} , PRECIO: $${valor}, STOCK: $stock"
     }
-    */
 }

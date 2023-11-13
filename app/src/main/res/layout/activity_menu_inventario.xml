@@ -68,7 +68,7 @@
         app:srcCompat="@drawable/user_icon" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_agregarProductoInventario"
         android:layout_width="371dp"
         android:layout_height="131dp"
         android:layout_marginTop="51dp"
@@ -91,32 +91,19 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_editarBorrarMenu" />
 
     <Button
-        android:id="@+id/button3"
-        android:layout_width="214dp"
-        android:layout_height="134dp"
+        android:id="@+id/btn_editarBorrarMenu"
+        android:layout_width="372dp"
+        android:layout_height="120dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="15dp"
         android:backgroundTint="#FFC107"
-        android:text="EDITAR PRODUCTO"
+        android:text="EDITAR/BORRAR PRODUCTO"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="141dp"
-        android:layout_height="134dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="24dp"
-        android:backgroundTint="#F44336"
-        android:text="REMOVER"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_agregarProductoInventario" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

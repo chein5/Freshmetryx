@@ -13,8 +13,10 @@
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/bg_home" />
 
     <TextView
@@ -29,19 +31,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button12" />
-
-    <TextView
-        android:id="@+id/textView49"
-        android:layout_width="233dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="49dp"
-        android:text="nameValue"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button12" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_cargarDatosEditar" />
 
     <TextView
         android:id="@+id/textView50"
@@ -58,18 +48,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textView48" />
 
     <TextView
-        android:id="@+id/textView51"
-        android:layout_width="233dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="45dp"
-        android:text="priceValue"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView49" />
-
-    <TextView
         android:id="@+id/textView52"
         android:layout_width="108dp"
         android:layout_height="31dp"
@@ -82,18 +60,6 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView50" />
-
-    <TextView
-        android:id="@+id/textView53"
-        android:layout_width="233dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="45dp"
-        android:text="stockValue"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView51" />
 
     <TextView
         android:id="@+id/textView42"
@@ -147,7 +113,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView43" />
 
     <Button
-        android:id="@+id/button10"
+        android:id="@+id/btn_escanearProductoEditar"
         android:layout_width="367dp"
         android:layout_height="78dp"
         android:layout_marginTop="19dp"
@@ -171,7 +137,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button10" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_escanearProductoEditar" />
 
     <TextView
         android:id="@+id/textView46"
@@ -187,24 +153,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView45" />
 
-    <TextView
-        android:id="@+id/textView47"
-        android:layout_width="233dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="38dp"
-        android:text="codeValue"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView45" />
-
     <Button
-        android:id="@+id/button11"
+        android:id="@+id/btn_editarProductoEditar"
         android:layout_width="313dp"
         android:layout_height="84dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:backgroundTint="#FF9800"
         android:text="EDITAR PRODUCTO"
         android:textColor="#FFFFFF"
@@ -213,7 +167,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView52" />
 
     <Button
-        android:id="@+id/button12"
+        android:id="@+id/btn_cargarDatosEditar"
         android:layout_width="290dp"
         android:layout_height="63dp"
         android:layout_marginStart="63dp"
@@ -224,5 +178,75 @@
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView46" />
+
+    <EditText
+        android:id="@+id/txt_codigoEditarManual"
+        android:layout_width="222dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#000000"
+        android:ems="10"
+        android:gravity="bottom|center_horizontal"
+        android:inputType="text"
+        android:textColor="#000000"
+        app:layout_constraintStart_toEndOf="@+id/textView46"
+        app:layout_constraintTop_toBottomOf="@+id/textView45" />
+
+    <EditText
+        android:id="@+id/txt_nombreEditar"
+        android:layout_width="244dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="#000000"
+        android:ems="10"
+        android:gravity="bottom|center_horizontal"
+        android:inputType="text"
+        android:shadowColor="#000000"
+        android:textColor="#000000"
+        app:layout_constraintStart_toEndOf="@+id/textView48"
+        app:layout_constraintTop_toBottomOf="@+id/btn_cargarDatosEditar" />
+
+    <EditText
+        android:id="@+id/txt_valorEditar"
+        android:layout_width="250dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#000000"
+        android:ems="10"
+        android:gravity="bottom|center_horizontal"
+        android:inputType="text"
+        android:textColor="#000000"
+        android:textColorHighlight="#000000"
+        android:textColorHint="#000000"
+        app:layout_constraintStart_toEndOf="@+id/textView50"
+        app:layout_constraintTop_toBottomOf="@+id/txt_nombreEditar" />
+
+    <EditText
+        android:id="@+id/txt_stockEditar"
+        android:layout_width="249dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
+        android:backgroundTint="#000000"
+        android:ems="10"
+        android:gravity="bottom|center_horizontal"
+        android:inputType="text"
+        android:textColor="#000000"
+        android:textColorLink="#000000"
+        app:layout_constraintStart_toEndOf="@+id/textView52"
+        app:layout_constraintTop_toBottomOf="@+id/txt_valorEditar" />
+
+    <Button
+        android:id="@+id/btn_borrarProductoEditar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="28dp"
+        android:text="Borrar Producto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_editarProductoEditar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
