@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-    <solid android:color="#E7D49E" /> <!-- Color de fondo -->
+    <solid android:color="#009688" /> <!-- Color de fondo -->
     <corners android:radius="20dp" /> <!-- Radio de las esquinas -->
 </shape>

@@ -54,7 +54,7 @@
         android:backgroundTint="#02060D"
         android:fontFamily="sans-serif-condensed-light"
         android:text="Iniciar Sesión"
-        android:textColor="#E7D49E"
+        android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

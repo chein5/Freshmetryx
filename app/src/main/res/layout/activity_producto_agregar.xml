@@ -7,43 +7,43 @@
     tools:context=".Producto_Agregar">
 
     <ImageView
-        android:id="@+id/imageView13"
+        android:id="@+id/bg_addproduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/bg_home" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btn_escanearAgregar"
-        android:layout_width="380dp"
-        android:layout_height="86dp"
+        android:layout_width="365dp"
+        android:layout_height="95dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
-        android:backgroundTint="#19DA86"
-        android:text="ESCANEE EL CODIGO DEL PRODUCTO"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/scanproduct_btn"
+        android:text="dsad"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView25" />
+        app:layout_constraintTop_toBottomOf="@+id/textView25"
+        tools:ignore="SpeakableTextPresentCheck" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btn_agregarProducto"
-        android:layout_width="311dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="44dp"
-        android:backgroundTint="#19DA86"
+        android:layout_width="308dp"
+        android:layout_height="76dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="33dp"
+        android:background="@drawable/addproduct2_btn"
         android:text="AGREGAR PRODUCTO"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txv_codigoProductoAgregar" />
+        app:layout_constraintTop_toBottomOf="@+id/txv_codigoProductoAgregar"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/textView22"
@@ -52,7 +52,7 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="16dp"
         android:text="Botilleria Winchester"
-        android:textColor="#E7D49E"
+        android:textColor="#009688"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,6 +63,7 @@
         android:layout_width="170dp"
         android:layout_height="25dp"
         android:layout_marginStart="36dp"
+        android:layout_marginTop="11dp"
         android:text="Kristin Meister"
         android:textAlignment="textStart"
         android:textColor="#FBFBFB"
@@ -73,10 +74,10 @@
 
     <TextView
         android:id="@+id/textView27"
-        android:layout_width="106dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="34dp"
+        android:layout_width="109dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="15dp"
         android:text="Nombre :"
         android:textAlignment="textStart"
         android:textColor="#000000"
@@ -87,10 +88,10 @@
 
     <TextView
         android:id="@+id/textView28"
-        android:layout_width="108dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="14dp"
+        android:layout_width="109dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="19dp"
         android:text="Valor :"
         android:textAlignment="textStart"
         android:textColor="#000000"
@@ -101,10 +102,10 @@
 
     <TextView
         android:id="@+id/textView29"
-        android:layout_width="108dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="109dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="13dp"
         android:text="Stock :"
         android:textAlignment="textStart"
         android:textColor="#000000"
@@ -125,90 +126,95 @@
 
     <TextView
         android:id="@+id/textView25"
-        android:layout_width="383dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="42dp"
+        android:layout_width="352dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="35dp"
         android:text="Agregar Producto"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="34sp"
+        android:textSize="26sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
     <TextView
         android:id="@+id/textView26"
-        android:layout_width="383dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="364dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="18dp"
         android:text="Datos del Producto"
         android:textAlignment="center"
         android:textColor="#000000"
-        android:textSize="34sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_escanearAgregar" />
 
     <EditText
         android:id="@+id/txt_nombreProductoAgregar"
-        android:layout_width="244dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="243dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="#000000"
         android:ems="10"
         android:inputType="text"
         android:textColor="#000000"
-        app:layout_constraintStart_toEndOf="@+id/textView27"
-        app:layout_constraintTop_toBottomOf="@+id/textView26" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView26"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/txt_valorProductoAgregar"
         android:layout_width="241dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="18dp"
         android:backgroundTint="#000000"
         android:ems="10"
         android:inputType="text"
         android:textColor="#000000"
-        app:layout_constraintStart_toEndOf="@+id/textView28"
-        app:layout_constraintTop_toBottomOf="@+id/txt_nombreProductoAgregar" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_nombreProductoAgregar"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/txt_stockProductoAgregar"
         android:layout_width="247dp"
         android:layout_height="44dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
         android:backgroundTint="#000000"
         android:ems="10"
         android:inputType="text"
         android:textColor="#000000"
-        app:layout_constraintStart_toEndOf="@+id/textView29"
-        app:layout_constraintTop_toBottomOf="@+id/txt_valorProductoAgregar" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_valorProductoAgregar"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/textView30"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="110dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="16dp"
         android:text="Codigo: "
         android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView29" />
 
     <TextView
         android:id="@+id/txv_codigoProductoAgregar"
-        android:layout_width="178dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="240dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="19dp"
         android:textColor="#000000"
-        app:layout_constraintStart_toEndOf="@+id/textView30"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_stockProductoAgregar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

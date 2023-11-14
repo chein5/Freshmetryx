@@ -24,7 +24,7 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="16dp"
         android:text="Botilleria Winchester"
-        android:textColor="#E7D49E"
+        android:textColor="#009688"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,22 +55,22 @@
 
     <TextView
         android:id="@+id/textView56"
-        android:layout_width="383dp"
-        android:layout_height="47dp"
+        android:layout_width="360dp"
+        android:layout_height="46dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="43dp"
         android:text="Listado de Ventas"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="34sp"
+        android:textSize="26sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView55" />
 
     <ListView
         android:id="@+id/list_hventas"
-        android:layout_width="340dp"
-        android:layout_height="405dp"
+        android:layout_width="325dp"
+        android:layout_height="478dp"
         android:layout_marginStart="36dp"
         android:layout_marginTop="42dp"
         android:background="#000000"

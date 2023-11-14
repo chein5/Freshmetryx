@@ -25,11 +25,12 @@
         android:layout_marginTop="243dp"
         android:layout_marginEnd="39dp"
         android:layout_marginBottom="125dp"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/bg_listproductos" />
+        app:srcCompat="@drawable/bg_listcarrito2" />
 
     <ImageView
         android:id="@+id/icon_user_ventacarrito"
@@ -43,13 +44,15 @@
 
     <ListView
         android:id="@+id/list_carrito"
-        android:layout_width="260dp"
-        android:layout_height="285dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="80dp"
+        android:layout_width="277dp"
+        android:layout_height="302dp"
+        android:layout_marginStart="57dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="59dp"
         android:background="#050505"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_scanqrCarrito">
+        app:layout_constraintTop_toBottomOf="@+id/textView49">
 
     </ListView>
 
@@ -60,7 +63,7 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="16dp"
         android:text="Botilleria Winchester"
-        android:textColor="#E7D49E"
+        android:textColor="#009688"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,21 +73,40 @@
         android:id="@+id/textView15"
         android:layout_width="301dp"
         android:layout_height="34dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="53dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="39dp"
         android:text="Escanee los productos"
         android:textAlignment="center"
-        android:textColor="#E7D49E"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/icon_user_ventacarrito" />
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+    <TextView
+        android:id="@+id/textView49"
+        android:layout_width="301dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="46dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="46dp"
+        android:text="Detalle"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_scanqrCarrito" />
 
     <TextView
         android:id="@+id/textView14"
         android:layout_width="170dp"
         android:layout_height="25dp"
         android:layout_marginStart="36dp"
+        android:layout_marginTop="10dp"
         android:text="Kristin Meister"
         android:textAlignment="textStart"
         android:textColor="#FBFBFB"
@@ -97,10 +119,12 @@
         android:id="@+id/btn_scanqrCarrito"
         android:layout_width="161dp"
         android:layout_height="53dp"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="116dp"
         android:backgroundTint="#00FFFFFF"
         android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15"
         app:srcCompat="@drawable/qr_button"
@@ -110,40 +134,46 @@
         android:id="@+id/txt_totalVenta"
         android:layout_width="255dp"
         android:layout_height="33dp"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="66dp"
         android:text="Total: $"
         android:textAlignment="textStart"
-        android:textColor="#151514"
+        android:textColor="#FFFFFD"
         android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/list_carrito" />
 
     <ImageButton
         android:id="@+id/ibtn_anular"
-        android:layout_width="173dp"
-        android:layout_height="74dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="167dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginBottom="15dp"
         android:backgroundTint="#00FFFFFF"
         android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_totalVenta"
-        app:srcCompat="@drawable/anular_button"
+        app:srcCompat="@drawable/back_btn"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/btn_confirmarVenta"
-        android:layout_width="205dp"
+        android:layout_width="196dp"
         android:layout_height="71dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="#00FFFFFF"
         android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_totalVenta"
-        app:srcCompat="@drawable/confirmar_button"
+        app:srcCompat="@drawable/ready_btn"
         tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

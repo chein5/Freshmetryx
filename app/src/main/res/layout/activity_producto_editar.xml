@@ -7,24 +7,22 @@
     tools:context=".Producto_Editar">
 
     <ImageView
-        android:id="@+id/imageView19"
+        android:id="@+id/bg_editproduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/bg_home" />
 
     <TextView
         android:id="@+id/textView48"
         android:layout_width="106dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="13dp"
         android:text="Nombre :"
         android:textAlignment="textStart"
         android:textColor="#000000"
@@ -35,10 +33,10 @@
 
     <TextView
         android:id="@+id/textView50"
-        android:layout_width="108dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="11dp"
+        android:layout_width="104dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="14dp"
         android:text="Valor :"
         android:textAlignment="textStart"
         android:textColor="#000000"
@@ -49,10 +47,10 @@
 
     <TextView
         android:id="@+id/textView52"
-        android:layout_width="108dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="9dp"
+        android:layout_width="107dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="13dp"
         android:text="Stock :"
         android:textAlignment="textStart"
         android:textColor="#000000"
@@ -68,7 +66,7 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="16dp"
         android:text="Botilleria Winchester"
-        android:textColor="#E7D49E"
+        android:textColor="#009688"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,42 +98,42 @@
 
     <TextView
         android:id="@+id/textView44"
-        android:layout_width="383dp"
+        android:layout_width="358dp"
         android:layout_height="47dp"
-        android:layout_marginStart="14dp"
+        android:layout_marginStart="17dp"
         android:layout_marginTop="41dp"
         android:text="Remover Producto"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="34sp"
+        android:textSize="26sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView43" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btn_escanearProductoEditar"
-        android:layout_width="367dp"
-        android:layout_height="78dp"
-        android:layout_marginTop="19dp"
-        android:layout_marginEnd="27dp"
-        android:backgroundTint="#FF9800"
+        android:layout_width="359dp"
+        android:layout_height="88dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="31dp"
+        android:background="@drawable/scanproduct2_btn"
         android:text="ESCANEE EL CODIGO DEL PRODUCTO"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView44" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView44"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/textView45"
-        android:layout_width="384dp"
+        android:layout_width="370dp"
         android:layout_height="34dp"
         android:layout_marginStart="11dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="14dp"
         android:text="O ingrese el codigo del producto"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="24sp"
-        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_escanearProductoEditar" />
 
@@ -143,8 +141,8 @@
         android:id="@+id/textView46"
         android:layout_width="106dp"
         android:layout_height="30dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
         android:text="Codigo :"
         android:textAlignment="textStart"
         android:textColor="#000000"
@@ -155,65 +153,71 @@
 
     <Button
         android:id="@+id/btn_editarProductoEditar"
-        android:layout_width="313dp"
-        android:layout_height="84dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="24dp"
-        android:backgroundTint="#FF9800"
-        android:text="EDITAR PRODUCTO"
+        android:layout_width="309dp"
+        android:layout_height="77dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="42dp"
+        android:background="@drawable/editproduct2_btn"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView52" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_stockEditar"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/btn_cargarDatosEditar"
-        android:layout_width="290dp"
-        android:layout_height="63dp"
-        android:layout_marginStart="63dp"
+        android:layout_width="324dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="36dp"
         android:layout_marginTop="11dp"
+        android:background="@drawable/addproduct2_btn"
         android:backgroundTint="#4CAF50"
         android:text="CARGAR DATOS"
         android:textColor="#FFFFFF"
-        android:textSize="16sp"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView46" />
 
     <EditText
         android:id="@+id/txt_codigoEditarManual"
-        android:layout_width="222dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="232dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="22dp"
         android:backgroundTint="#000000"
         android:ems="10"
         android:gravity="bottom|center_horizontal"
         android:inputType="text"
         android:textColor="#000000"
-        app:layout_constraintStart_toEndOf="@+id/textView46"
-        app:layout_constraintTop_toBottomOf="@+id/textView45" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView45"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/txt_nombreEditar"
         android:layout_width="244dp"
         android:layout_height="38dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="10dp"
         android:backgroundTint="#000000"
         android:ems="10"
         android:gravity="bottom|center_horizontal"
         android:inputType="text"
         android:shadowColor="#000000"
         android:textColor="#000000"
-        app:layout_constraintStart_toEndOf="@+id/textView48"
-        app:layout_constraintTop_toBottomOf="@+id/btn_cargarDatosEditar" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_cargarDatosEditar"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/txt_valorEditar"
         android:layout_width="250dp"
         android:layout_height="39dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="3dp"
         android:backgroundTint="#000000"
         android:ems="10"
         android:gravity="bottom|center_horizontal"
@@ -221,32 +225,40 @@
         android:textColor="#000000"
         android:textColorHighlight="#000000"
         android:textColorHint="#000000"
-        app:layout_constraintStart_toEndOf="@+id/textView50"
-        app:layout_constraintTop_toBottomOf="@+id/txt_nombreEditar" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_nombreEditar"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/txt_stockEditar"
         android:layout_width="249dp"
         android:layout_height="42dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="5dp"
         android:backgroundTint="#000000"
         android:ems="10"
         android:gravity="bottom|center_horizontal"
         android:inputType="text"
         android:textColor="#000000"
         android:textColorLink="#000000"
-        app:layout_constraintStart_toEndOf="@+id/textView52"
-        app:layout_constraintTop_toBottomOf="@+id/txt_valorEditar" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_valorEditar"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btn_borrarProductoEditar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="204dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="94dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="95dp"
+        android:layout_marginBottom="6dp"
+        android:background="@drawable/removeproduct_btn"
         android:text="Borrar Producto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_editarProductoEditar" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_editarProductoEditar"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

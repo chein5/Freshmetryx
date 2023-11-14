@@ -21,58 +21,57 @@
         <activity
             android:name=".Venta_Listar"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".Producto_Editar"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".Productos_Listar"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".Producto_Remover"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".Producto_Agregar"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".Menu_Inventario"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".Venta_Error"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".Venta_Resultado"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".Detalle_Carrito"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".Venta_Carrito"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".Menu_Ventas"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".Home"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".Login_User"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat">
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -83,7 +82,7 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.AppCompat" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="portrait"
