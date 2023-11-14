@@ -135,7 +135,7 @@ class Home : AppCompatActivity() {
                 }
 
                 // Muestra el total general después de procesar todos los documentos
-                binding.txtIngresosHome.text = totalGeneral.toString()
+                binding.txtIngresosHome.text = "$"+totalGeneral.toString()
             }
             .addOnFailureListener { e ->
 
