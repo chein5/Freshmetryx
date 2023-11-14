@@ -50,12 +50,7 @@ class MainActivity : AppCompatActivity() {
             }else{
                 val db = Firebase.firestore
                 val dato= hashMapOf("Codigo" to result.contents)
-                db.collection("Datos").add(dato).addOnSuccessListener { documentReference ->
-                    Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
-                }
-                    .addOnFailureListener { e ->
-                        Log.w(TAG, "Error adding document", e)
-                    }
+                mostrarDatos(result.contents.toString())
                 Toast.makeText(this,"el valor escaneado es: "+ result.contents, Toast.LENGTH_LONG ).show()
                 if (result != null){
                     mostrarDatos(result.contents.toString())
@@ -87,9 +82,9 @@ class MainActivity : AppCompatActivity() {
                     if (data != null) {
                         Toast.makeText(this,"Datos encontrados", Toast.LENGTH_LONG ).show()
                         // Suponiendo que tienes TextField llamados textfield1, textfield2, etc.
-                        txtNombre_Scan.setText("Nombre: "+data["Nombre"].toString())
-                        txtStock_Scan.setText("Stock: "+data["Stock"].toString())
-                        txtValor_Scan.setText("Valor: " +data["Valor"].toString())
+                        txtNombre_Scan.setText("Nombre: "+data["nombre"].toString())
+                        txtStock_Scan.setText("Stock: "+data["stock"].toString())
+                        txtValor_Scan.setText("Valor: " +data["valor"].toString())
                         txtCodigo_Scan.setText("Codigo: "+ consulta)
                         // Añade más líneas para otros campos según sea necesario
                     }

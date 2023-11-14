@@ -121,7 +121,7 @@
         app:layout_constraintTop_toBottomOf="@+id/list_carrito" />
 
     <ImageButton
-        android:id="@+id/btn_anular"
+        android:id="@+id/ibtn_anular"
         android:layout_width="173dp"
         android:layout_height="74dp"
         android:layout_marginStart="16dp"

@@ -26,6 +26,7 @@ class Detalle_Carrito : AppCompatActivity() {
         btnListo.setOnClickListener {
             val intent = Intent(this, Venta_Resultado ::class.java)
             startActivity(intent)
+            this.finish()
         }
         btn_volverDetalle= findViewById(R.id.btn_volverDetalle)
         btn_volverDetalle.setOnClickListener {
@@ -73,5 +74,11 @@ class Detalle_Carrito : AppCompatActivity() {
                     println("Error al obtener el documento: $exception")
                 }
         }
+    }
+    override fun onBackPressed() {
+        val intent = Intent(this, Venta_Carrito::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+        startActivity(intent)
+        finish()
     }
 }

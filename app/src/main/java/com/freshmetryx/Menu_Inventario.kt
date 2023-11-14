@@ -14,6 +14,7 @@ class Menu_Inventario : AppCompatActivity() {
         //Declaracion de variables
         lateinit var btnAgregarProducto : Button
         lateinit var btnEditarInventario : Button
+        lateinit var btn_listarProductosMenu : Button
 
         //Iniciar la ventana de agregar productos
         btnAgregarProducto = findViewById(R.id.btn_agregarProductoInventario)
@@ -27,6 +28,14 @@ class Menu_Inventario : AppCompatActivity() {
             val intent = Intent(this, Producto_Editar::class.java)
             startActivity(intent)
         }
+
+        //Iniciar la ventana de listar productos
+        btn_listarProductosMenu = findViewById(R.id.btn_listarProductosMenu)
+        btn_listarProductosMenu.setOnClickListener {
+            val intent = Intent(this, Productos_Listar::class.java)
+            startActivity(intent)
+        }
+
 
     }
 }

@@ -44,7 +44,7 @@ class Home : AppCompatActivity() {
         //Iniciar una venta
         btn_ventaHome =findViewById(R.id.btn_ventaHome)
         btn_ventaHome.setOnClickListener {
-            val intent = Intent(this, Menu_Ventas ::class.java)
+            val intent = Intent(this, Venta_Carrito ::class.java)
             startActivity(intent)
         }
 
@@ -56,6 +56,10 @@ class Home : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.ibtnFinanzasHome.setOnClickListener {
+            val intent = Intent(this, Menu_Ventas::class.java)
+            startActivity(intent)
+        }
 
         val fechaActual = Calendar.getInstance().time
 

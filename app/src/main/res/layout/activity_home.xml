@@ -64,7 +64,7 @@
         android:layout_height="52dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        android:text="-$25.600"
+        android:text="$0"
         android:textAlignment="textEnd"
         android:textColor="#E91E63"
         android:textSize="34sp"
@@ -163,7 +163,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
-        android:id="@+id/btnFinanza"
+        android:id="@+id/ibtn_finanzasHome"
         android:layout_width="135dp"
         android:layout_height="127dp"
         android:layout_marginTop="16dp"
@@ -225,7 +225,7 @@
         android:textColor="#02060D"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnFinanza" />
+        app:layout_constraintTop_toBottomOf="@+id/ibtn_finanzasHome" />
 
     <ImageButton
         android:id="@+id/imageButton7"

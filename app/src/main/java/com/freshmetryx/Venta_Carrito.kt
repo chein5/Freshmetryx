@@ -7,12 +7,14 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ImageButton
 import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.view.isEmpty
 import com.freshmetryx.databinding.ActivityVentaCarritoBinding
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FirebaseFirestore
@@ -56,7 +58,19 @@ class Venta_Carrito : AppCompatActivity() {
         btn_crearVenta.setOnClickListener {
             agregarDatos(lista_ayuda, 0)
         }
+
+        binding.ibtnAnular.setOnClickListener {
+            intent = Intent(this, Menu_Ventas::class.java)
+            startActivity(intent)
+        }
+        if (binding.listCarrito.isEmpty()){
+            binding.btnConfirmarVenta.isEnabled = false
+        }else{
+            binding.btnConfirmarVenta.isEnabled = true
+        }
+
     }
+
 
     //funcion que nos permitira abrir el scanner
     private fun initScanner(){
@@ -174,6 +188,7 @@ class Venta_Carrito : AppCompatActivity() {
         btn_crearVenta.setOnClickListener {
             agregarDatos(lista_ayuda, total)
         }
+        binding.btnConfirmarVenta.isEnabled = true
     }
 
     //Funcion para agregar los datos a Firestore despues de presionar el boton de confirmar venta
@@ -228,4 +243,34 @@ class Venta_Carrito : AppCompatActivity() {
                 println("Error al agregar el documento de Boleta: $e")
             }
     }
+    /* fun eliminarUltimoProducto(view: View) {
+        // Verificar si hay productos en la lista
+        if (lista_ayuda.isNotEmpty()) {
+            // Remover el último producto de la lista
+            val ultimoProducto = lista_ayuda.removeAt(lista_ayuda.size - 1)
+
+            // Actualizar la vista de la lista
+            val adapter: ArrayAdapter<Clase_ayuda> = ArrayAdapter<Clase_ayuda>(
+                this@Venta_Carrito,
+                android.R.layout.simple_list_item_1,
+                lista_ayuda
+            )
+            listView_carrito.adapter = adapter
+
+            // Actualizar el total
+            var total = 0L
+            for (ayuda in lista_ayuda) {
+                total += ayuda.cantidad_producto * ayuda.precio_producto
+            }
+            txt_totalVenta.text = "SubTotal: $total"
+
+            // Mostrar un mensaje o realizar otras acciones según sea necesario
+            Toast.makeText(this, "Se eliminó el último producto", Toast.LENGTH_SHORT).show()
+        } else {
+            // Mostrar un mensaje indicando que la lista está vacía
+            Toast.makeText(this, "La lista está vacía", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+     */
 }

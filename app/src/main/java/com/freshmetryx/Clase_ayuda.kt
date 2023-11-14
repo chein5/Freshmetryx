@@ -1,5 +1,8 @@
 package com.freshmetryx
 
+/*
+Esta clase nos permite crear objetos para mostrar en algunas de las listview de la aplicacion.
+ */
 data class Clase_ayuda (
     var nombre_producto : String= "",
     var cantidad_producto : Long =0,

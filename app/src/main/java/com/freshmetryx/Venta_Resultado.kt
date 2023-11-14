@@ -114,7 +114,11 @@ class Venta_Resultado : AppCompatActivity() {
         Toast.makeText(this, "Permisos concedidos", Toast.LENGTH_LONG).show()
     }
 
-
+    override fun onBackPressed() {
+        val intent = Intent(this, Venta_Carrito::class.java)
+        startActivity(intent)
+        this.finish()
+    }
 
 
 

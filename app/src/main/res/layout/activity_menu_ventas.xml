@@ -93,7 +93,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/ibtn_volverHomeVentas"
         android:layout_width="316dp"
         android:layout_height="94dp"
         android:layout_marginStart="47dp"

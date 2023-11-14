@@ -78,42 +78,82 @@ class Producto_Editar : AppCompatActivity() {
         }
     }
 
-    fun mostrarDatos(){
+    fun mostrarDatos() {
         val db = Firebase.firestore
-        val dato= hashMapOf("Codigo" to binding.txtCodigoEditarManual.text.toString())
-        db.collection("Productos").document(binding.txtCodigoEditarManual.text.toString()).get().addOnSuccessListener {
-            binding.txtNombreEditar.setText(it.get("nombre").toString())
-            binding.txtValorEditar.setText(it.get("valor").toString())
-            binding.txtStockEditar.setText(it.get("stock").toString())
-        }.addOnFailureListener(){
-            Toast.makeText(this,"No se encontro el producto: "+ binding.txtCodigoEditarManual.text.toString(), Toast.LENGTH_LONG ).show()
+        val codigo = binding.txtCodigoEditarManual.text.toString()
+
+        // Verificar que el campo del código no esté vacío
+        if (codigo.isEmpty()) {
+            Toast.makeText(this, "Por favor, ingrese el código del producto", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Verificar si el producto existe en la base de datos
+        db.collection("Productos").document(codigo).get().addOnSuccessListener { documentSnapshot ->
+            if (documentSnapshot.exists()) {
+
+                binding.txtNombreEditar.setText(documentSnapshot.get("nombre").toString())
+                binding.txtValorEditar.setText(documentSnapshot.get("valor").toString())
+                binding.txtStockEditar.setText(documentSnapshot.get("stock").toString())
+            } else {
+
+                Toast.makeText(this, "El producto con el código $codigo no existe", Toast.LENGTH_LONG).show()
+            }
+        }.addOnFailureListener {
+            Toast.makeText(this, "Error al buscar el producto: $codigo", Toast.LENGTH_LONG).show()
         }
     }
 
-    fun editarDatos(){
+    fun editarDatos() {
+        // Obtener los valores de los campos de texto
+        val nombre = binding.txtNombreEditar.text.toString()
+        val stockString = binding.txtStockEditar.text.toString()
+        val valorString = binding.txtValorEditar.text.toString()
+        val codigo = binding.txtCodigoEditarManual.text.toString()
+
+        // Verificar que todos los campos estén llenos
+        if (nombre.isEmpty() || stockString.isEmpty() || valorString.isEmpty()) {
+            Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+
+        val stock = stockString.toLong()
+        val valor = valorString.toLong()
+
         val db = Firebase.firestore
         val nuevosDatos = hashMapOf(
-            "nombre" to binding.txtNombreEditar.text.toString(),
-            "stock" to binding.txtStockEditar.text.toString(),
-            "valor" to binding.txtValorEditar.text.toString()
+            "nombre" to nombre,
+            "stock" to stock,
+            "valor" to valor
         )
-        db.collection("Productos").document(binding.txtCodigoEditarManual.text.toString()).update(
+
+        db.collection("Productos").document(codigo).update(
             nuevosDatos as Map<String, Any>
         ).addOnSuccessListener {
-            Toast.makeText(this,"Se edito el producto con el codigo: "+ binding.txtCodigoEditarManual.text.toString(), Toast.LENGTH_LONG ).show()
-        }.addOnFailureListener(){
-            Toast.makeText(this,"No se encontro el producto: "+ binding.txtCodigoEditarManual.text.toString(), Toast.LENGTH_LONG ).show()
+            Toast.makeText(this, "Se editó el producto con el código: $codigo", Toast.LENGTH_LONG).show()
+        }.addOnFailureListener {
+            Toast.makeText(this, "No se encontró el producto: $codigo", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    fun eliminarDato() {
+        // Obtener el código del campo de texto
+        val codigo = binding.txtCodigoEditarManual.text.toString()
+
+        // Verificar que el campo del código no esté vacío
+        if (codigo.isEmpty()) {
+            Toast.makeText(this, "Por favor, ingrese el código del producto", Toast.LENGTH_SHORT).show()
+            return
         }
 
-    }
-    fun eliminarDato(){
         val db = Firebase.firestore
-        val dato= hashMapOf("Codigo" to binding.txtCodigoEditarManual.text.toString())
-        db.collection("Productos").document(binding.txtCodigoEditarManual.text.toString()).delete().addOnSuccessListener {
-            Toast.makeText(this,"Se elimino el producto con el codigo: "+ binding.txtCodigoEditarManual.text.toString(), Toast.LENGTH_LONG ).show()
-        }.addOnFailureListener(){
-            Toast.makeText(this,"No se encontro el producto: "+ binding.txtCodigoEditarManual.text.toString(), Toast.LENGTH_LONG ).show()
+        db.collection("Productos").document(codigo).delete().addOnSuccessListener {
+            Toast.makeText(this, "Se eliminó el producto con el código: $codigo", Toast.LENGTH_LONG).show()
+        }.addOnFailureListener {
+            Toast.makeText(this, "No se encontró el producto: $codigo", Toast.LENGTH_LONG).show()
         }
     }
+
 
 }

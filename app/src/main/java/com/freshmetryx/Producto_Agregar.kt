@@ -67,17 +67,67 @@ class Producto_Agregar : AppCompatActivity() {
         }
     }
 
-    fun agregarDatos (){
-        val txtNombre_Scan = binding.txtNombreProductoAgregar.text
-        val txtStock_Scan = binding.txtStockProductoAgregar.text
-        val txtValor_Scan = binding.txtValorProductoAgregar.text
-        val p = Producto(txtNombre_Scan.toString(),txtStock_Scan.toString().toLong(),txtValor_Scan.toString().toLong())
-        db.collection("Productos").document(binding.txvCodigoProductoAgregar.text.toString()).set(p).addOnSuccessListener { documentReference ->
-        Log.d(ContentValues.TAG, "DocumentSnapshot added with ID: ${binding.txvCodigoProductoAgregar.text}")
-        mostrarDatos(binding.txvCodigoProductoAgregar.text.toString()) }.addOnFailureListener { e ->
-             Log.w(ContentValues.TAG, "Error adding document", e)
-         }
-        Toast.makeText(this,"Se agrego: "+ p+ " con el codigo "+binding.txvCodigoProductoAgregar.text.toString(), Toast.LENGTH_LONG ).show()
+    fun agregarDatos() {
+        // Obtener los valores de los campos de texto
+        val txtNombre_Scan = binding.txtNombreProductoAgregar.text.toString()
+        val txtStock_Scan = binding.txtStockProductoAgregar.text.toString()
+        val txtValor_Scan = binding.txtValorProductoAgregar.text.toString()
+
+        // Verificar si algún campo está vacío
+        if (txtNombre_Scan.isEmpty()) {
+            binding.txtNombreProductoAgregar.error = "Campo obligatorio"
+            return
+        }
+
+        if (txtStock_Scan.isEmpty()) {
+            binding.txtStockProductoAgregar.error = "Campo obligatorio"
+            return
+        }
+
+        if (txtValor_Scan.isEmpty()) {
+            binding.txtValorProductoAgregar.error = "Campo obligatorio"
+            return
+        }
+
+        // Verificar si el producto ya existe en la base de datos
+        val codigoProducto = binding.txvCodigoProductoAgregar.text.toString()
+        val docRef = db.collection("Productos").document(codigoProducto)
+
+        docRef.get()
+            .addOnSuccessListener { documentSnapshot ->
+                if (documentSnapshot.exists()) {
+                    // El producto ya existe en la base de datos, mostrar mensaje y no agregar
+                    Toast.makeText(this, "El producto ya existe en la base de datos", Toast.LENGTH_SHORT).show()
+                } else {
+                    // El producto no existe, agregarlo a la colección "Productos"
+                    val p = Producto(txtNombre_Scan, txtStock_Scan.toLong(), txtValor_Scan.toLong())
+
+                    db.collection("Productos").document(codigoProducto)
+                        .set(p)
+                        .addOnSuccessListener { documentReference ->
+                            Log.d(ContentValues.TAG, "DocumentSnapshot added with ID: $codigoProducto")
+                            mostrarDatos(codigoProducto)
+
+                            // Limpiar los campos después de agregar el producto correctamente
+                            binding.txtNombreProductoAgregar.text.clear()
+                            binding.txtStockProductoAgregar.text.clear()
+                            binding.txtValorProductoAgregar.text.clear()
+                            binding.txvCodigoProductoAgregar.text = ""
+
+                            Toast.makeText(
+                                this,
+                                "Se agregó: $p con el código $codigoProducto",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                        .addOnFailureListener { e ->
+                            Log.w(ContentValues.TAG, "Error adding document", e)
+                        }
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.e(ContentValues.TAG, "Error al obtener documento: $e")
+            }
     }
 
     fun mostrarDatos(consulta : String){
@@ -91,7 +141,7 @@ class Producto_Agregar : AppCompatActivity() {
                     // Obtener los datos del documento
                     val data = documentSnapshot.data
                 } else {
-                    Toast.makeText(this,"No se encontro el dato", Toast.LENGTH_LONG ).show()
+
                 }
             }
             .addOnFailureListener { e ->
