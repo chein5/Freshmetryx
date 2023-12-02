@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Gestion_Negocio">
+
+    <ImageView
+        android:id="@+id/imageView32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bg_homesell" />
+
+    <Spinner
+        android:id="@+id/spinner3"
+        android:layout_width="367dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="23dp"
+        android:background="@drawable/rounded_edittext"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtNombreNegocio" />
+
+    <Spinner
+        android:id="@+id/spinner4"
+        android:layout_width="367dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="26dp"
+        android:background="@drawable/rounded_edittext"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtNombreNegocio2" />
+
+    <EditText
+        android:id="@+id/txtNombreNegocio"
+        android:layout_width="366dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="45dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:hint="Nombre negocio"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView84" />
+
+    <EditText
+        android:id="@+id/txtNombreNegocio2"
+        android:layout_width="366dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:hint="Nombre dueño"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner3" />
+
+    <TextView
+        android:id="@+id/textView82"
+        android:layout_width="273dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="16dp"
+        android:text="Botilleria Winchester"
+        android:textColor="#009688"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView83"
+        android:layout_width="170dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="8dp"
+        android:text="Kristin Meister"
+        android:textAlignment="textStart"
+        android:textColor="#FBFBFB"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView82" />
+
+    <ImageView
+        android:id="@+id/imageView33"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/user_icon" />
+
+    <TextView
+        android:id="@+id/textView84"
+        android:layout_width="371dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="21dp"
+        android:text="Informacion del Negocio"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView83" />
+
+    <ImageButton
+        android:id="@+id/imageButton17"
+        android:layout_width="163dp"
+        android:layout_height="71dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="37dp"
+        android:background="#00FFFFFF"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner4"
+        app:srcCompat="@drawable/edit_btn"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/imageButton18"
+        android:layout_width="179dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="37dp"
+        android:layout_marginEnd="11dp"
+        android:background="#00FFFFFF"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner4"
+        app:srcCompat="@drawable/confirm_btn"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
