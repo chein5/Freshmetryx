@@ -91,7 +91,7 @@ class Producto_Agregar : AppCompatActivity() {
 
         // Verificar si el producto ya existe en la base de datos
         val codigoProducto = binding.txvCodigoProductoAgregar.text.toString()
-        val docRef = db.collection("Productos").document(codigoProducto)
+        val docRef = db.collection("clientes").document("donde_rosa").collection("Productos").document(codigoProducto)
 
         docRef.get()
             .addOnSuccessListener { documentSnapshot ->
@@ -102,7 +102,7 @@ class Producto_Agregar : AppCompatActivity() {
                     // El producto no existe, agregarlo a la colección "Productos"
                     val p = Producto(txtNombre_Scan, txtStock_Scan.toLong(), txtValor_Scan.toLong())
 
-                    db.collection("Productos").document(codigoProducto)
+                    db.collection("clientes").document("donde_rosa").collection("Productos").document(codigoProducto)
                         .set(p)
                         .addOnSuccessListener { documentReference ->
                             Log.d(ContentValues.TAG, "DocumentSnapshot added with ID: $codigoProducto")
@@ -133,7 +133,7 @@ class Producto_Agregar : AppCompatActivity() {
     fun mostrarDatos(consulta : String){
         val db = Firebase.firestore
         Log.e(ContentValues.TAG, "Numero de consulta: $consulta")
-        val docRef= db.collection("Productos").document(consulta)
+        val docRef= db.collection("clientes").document("donde_rosa").collection("Productos").document(consulta)
         docRef.get()
             .addOnSuccessListener { documentSnapshot ->
                 if (documentSnapshot.exists()) {

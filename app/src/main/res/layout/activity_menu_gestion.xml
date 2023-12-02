@@ -18,7 +18,7 @@
         app:srcCompat="@drawable/bg_homesell" />
 
     <TextView
-        android:id="@+id/textView77"
+        android:id="@+id/txtv_nombreNegocioCuenta"
         android:layout_width="273dp"
         android:layout_height="37dp"
         android:layout_marginStart="36dp"
@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView80"
+        android:id="@+id/txtv_nombreUsuarioCuenta"
         android:layout_width="170dp"
         android:layout_height="25dp"
         android:layout_marginStart="36dp"
@@ -42,7 +42,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView77" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreNegocioCuenta" />
 
     <ImageView
         android:id="@+id/imageView31"
@@ -66,10 +66,10 @@
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView80" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreUsuarioCuenta" />
 
     <ImageButton
-        android:id="@+id/imageButton14"
+        android:id="@+id/ibtn_gestionNegocioPanel"
         android:layout_width="339dp"
         android:layout_height="171dp"
         android:layout_marginStart="27dp"
@@ -82,7 +82,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
-        android:id="@+id/imageButton15"
+        android:id="@+id/ibtn_gestionPerfilPanel"
         android:layout_width="338dp"
         android:layout_height="156dp"
         android:layout_marginStart="27dp"
@@ -90,12 +90,12 @@
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton14"
+        app:layout_constraintTop_toBottomOf="@+id/ibtn_gestionNegocioPanel"
         app:srcCompat="@drawable/perfil_btn"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
-        android:id="@+id/imageButton16"
+        android:id="@+id/ibtn_gestionMembresiaPanel"
         android:layout_width="337dp"
         android:layout_height="167dp"
         android:layout_marginStart="27dp"
@@ -103,7 +103,7 @@
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton15"
+        app:layout_constraintTop_toBottomOf="@+id/ibtn_gestionPerfilPanel"
         app:srcCompat="@drawable/membresia_btn"
         tools:ignore="SpeakableTextPresentCheck" />
 

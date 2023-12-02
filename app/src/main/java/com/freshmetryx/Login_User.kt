@@ -55,7 +55,9 @@ class Login_User : AppCompatActivity() {
                             Toast.makeText(baseContext, "Exito en el inicio de sesion",Toast.LENGTH_LONG).show()
                             Log.d(TAG, "Inicio de sesion exitoso")
                             val user = auth.currentUser
+                            val correo= user?.email
                             val intent = Intent(this, Home ::class.java)
+                            intent.putExtra("correo", correo)
                             startActivity(intent)
                             //updateUI(user)
                         }else{

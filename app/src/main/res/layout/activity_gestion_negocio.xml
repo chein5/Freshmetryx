@@ -72,7 +72,7 @@
         app:layout_constraintTop_toBottomOf="@+id/spinner3" />
 
     <TextView
-        android:id="@+id/textView82"
+        android:id="@+id/txtv_nombreNegocioEdicion"
         android:layout_width="273dp"
         android:layout_height="37dp"
         android:layout_marginStart="36dp"
@@ -85,7 +85,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView83"
+        android:id="@+id/txtv_nombreUsuarioEdicion"
         android:layout_width="170dp"
         android:layout_height="25dp"
         android:layout_marginStart="36dp"
@@ -96,7 +96,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView82" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreNegocioEdicion" />
 
     <ImageView
         android:id="@+id/imageView33"
@@ -120,7 +120,7 @@
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView83" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreUsuarioEdicion" />
 
     <ImageButton
         android:id="@+id/imageButton17"

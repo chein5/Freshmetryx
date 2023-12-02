@@ -10,6 +10,7 @@ import com.freshmetryx.databinding.ActivityHomeBinding
 import com.freshmetryx.databinding.ActivityProductoEditarBinding
 import com.google.firebase.FirebaseApp
 import com.google.firebase.Timestamp
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.util.Calendar
@@ -19,6 +20,7 @@ class Home : AppCompatActivity() {
 
     //Declaracion de variables
     private lateinit var binding: ActivityHomeBinding
+    private lateinit var correo: String
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_Freshmetryx);
         super.onCreate(savedInstanceState)
@@ -29,15 +31,35 @@ class Home : AppCompatActivity() {
         lateinit var btn_ventaHome : ImageButton
         lateinit var btn_inventarioHome : ImageButton
 
+        //variables
+        val db = Firebase.firestore
+
         //Configuracion del view Binding (es una funcion que te permite escribir codigo mas facilmente para interactuar directamente con las vistas)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         FirebaseApp.initializeApp(this)
+
+        //Recibir correo
+        correo = intent.getStringExtra("correo").toString()
+
+        //Mostrar datos del negocio
+        db.collection("clientes").whereEqualTo("correo", correo).get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    binding.txtvNombreNegocioHome.text = document.getString("nombre_negocio")
+                    binding.txtvNombreUsuarioHome.text = document.getString("nombre_cliente")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Error al cargar los datos del negocio", Toast.LENGTH_SHORT).show()
+            }
+
         //Activar boton de scanner
         btnQr = findViewById(R.id.btnEscaner)
         btnQr.setOnClickListener {
             val intent = Intent(this, MainActivity ::class.java)
+            intent.putExtra("correo", correo)
             startActivity(intent)
         }
 
@@ -45,6 +67,7 @@ class Home : AppCompatActivity() {
         btn_ventaHome =findViewById(R.id.btn_ventaHome)
         btn_ventaHome.setOnClickListener {
             val intent = Intent(this, Venta_Carrito ::class.java)
+            intent.putExtra("correo", correo)
             startActivity(intent)
         }
 
@@ -53,11 +76,19 @@ class Home : AppCompatActivity() {
         btn_inventarioHome = findViewById(R.id.btnInventarioHome)
         btn_inventarioHome.setOnClickListener {
             val intent = Intent(this, Menu_Inventario ::class.java)
+            intent.putExtra("correo", correo)
             startActivity(intent)
         }
 
+        //Abrir el menu de cuenta
+        binding.ibtnCuentaHome.setOnClickListener {
+            val intent = Intent(this, Menu_Gestion::class.java)
+            intent.putExtra("correo", correo)
+            startActivity(intent)
+        }
         binding.ibtnFinanzasHome.setOnClickListener {
             val intent = Intent(this, Menu_Ventas::class.java)
+            intent.putExtra("correo", correo)
             startActivity(intent)
         }
 
@@ -78,7 +109,7 @@ class Home : AppCompatActivity() {
         fechaManana.add(Calendar.DAY_OF_MONTH, 1)
         val timestampFin = Timestamp(formatoFecha.parse(formatoFecha.format(fechaManana.time))!!)
 
-        val db = Firebase.firestore
+
         db.collection("Boleta").whereGreaterThanOrEqualTo("fecha", timestampInicio)
             .whereLessThan("fecha", timestampFin)
             .get()
