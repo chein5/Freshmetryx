@@ -79,8 +79,16 @@ class Home : AppCompatActivity() {
             intent.putExtra("correo", correo)
             startActivity(intent)
         }
+        //Abrir el menu de finanzas
         binding.ibtnFinanzasHome.setOnClickListener {
             val intent = Intent(this, Menu_Ventas::class.java)
+            intent.putExtra("correo", correo)
+            startActivity(intent)
+        }
+
+        //abrir el menu de proveedores
+        binding.ibtnProveedoresHome.setOnClickListener {
+            val intent = Intent(this, Menu_Check_In::class.java)
             intent.putExtra("correo", correo)
             startActivity(intent)
         }

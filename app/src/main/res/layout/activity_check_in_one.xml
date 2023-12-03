@@ -106,50 +106,52 @@
 
     <RadioGroup
         android:id="@+id/rdbgroup_boleta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="267dp"
+        android:layout_height="157dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="32dp"
+        android:checkedButton="@id/rdb_si"
+        android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/textView68">
+
+        <RadioButton
+            android:id="@+id/rdb_si"
+            android:layout_width="146dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="31dp"
+            android:checked="true"
+            android:foregroundGravity="center_vertical|clip_horizontal"
+            android:text="Si"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/rdb_no"
+            android:layout_width="143dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="31dp"
+            android:layout_marginEnd="40dp"
+            android:gravity="center|center_horizontal|fill_horizontal"
+            android:text="No"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
     </RadioGroup>
-
-    <RadioButton
-        android:id="@+id/rdb_no"
-        android:layout_width="146dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="31dp"
-        android:layout_marginEnd="40dp"
-        android:text="No"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView68" />
-
-    <RadioButton
-        android:id="@+id/rdb_si"
-        android:layout_width="146dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="31dp"
-        android:checked="true"
-        android:text="Si"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView68" />
 
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="340dp"
         android:layout_height="62dp"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="28dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rdb_no"
+        app:layout_constraintTop_toBottomOf="@+id/rdbgroup_boleta"
         app:srcCompat="@drawable/cam_btn"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -157,8 +159,8 @@
         android:id="@+id/imageButton2"
         android:layout_width="268dp"
         android:layout_height="71dp"
-        android:layout_marginStart="62dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="36dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"

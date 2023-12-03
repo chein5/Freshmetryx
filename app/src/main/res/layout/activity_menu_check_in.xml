@@ -69,7 +69,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView53" />
 
     <ImageButton
-        android:id="@+id/btn_historiapedido"
+        android:id="@+id/Ibtn_historiapedidoMenu"
         android:layout_width="335dp"
         android:layout_height="213dp"
         android:layout_marginStart="34dp"
@@ -82,7 +82,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
-        android:id="@+id/checkin_btn"
+        android:id="@+id/ibtn_realizarCheckinMenu"
         android:layout_width="333dp"
         android:layout_height="218dp"
         android:layout_marginStart="33dp"
@@ -90,7 +90,7 @@
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_historiapedido"
+        app:layout_constraintTop_toBottomOf="@+id/Ibtn_historiapedidoMenu"
         app:srcCompat="@drawable/checkin_btn"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -103,7 +103,7 @@
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkin_btn"
+        app:layout_constraintTop_toBottomOf="@+id/ibtn_realizarCheckinMenu"
         app:srcCompat="@drawable/backtomenu_btn"
         tools:ignore="SpeakableTextPresentCheck" />
 

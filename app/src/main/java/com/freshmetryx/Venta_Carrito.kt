@@ -283,9 +283,11 @@ class Venta_Carrito : AppCompatActivity() {
                                 }
                             //Aqui se envia el id de la boleta a la siguiente actividad para mostrar los datos
                             val intent2 = Intent(this, Detalle_Carrito::class.java).apply {
+                                putExtra("correo", correo)
                                 putExtra("id", nuevoId)
                             }
                             //Se inicia el proximo activity
+
                             startActivity(intent2)
                             println("Se ha insertado un nuevo documento de Boleta con el ID: ${documentReference.id}")
                         }

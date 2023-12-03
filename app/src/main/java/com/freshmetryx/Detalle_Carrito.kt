@@ -21,6 +21,7 @@ class Detalle_Carrito : AppCompatActivity() {
     private lateinit var correo : String
     private lateinit var docId: String
     private lateinit var binding: ActivityDetalleCarritoBinding
+    private lateinit var idVenta: String
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +33,7 @@ class Detalle_Carrito : AppCompatActivity() {
 
         //capturar el correo desde el intent anterior
         correo = intent.getStringExtra("correo").toString()
-
+        idVenta= intent.getStringExtra("id").toString()
         docId = ""
 
         //precargar datos del negocio
@@ -42,6 +43,8 @@ class Detalle_Carrito : AppCompatActivity() {
         btnListo = findViewById(R.id.btnListoCompra);
         btnListo.setOnClickListener {
             val intent = Intent(this, Venta_Resultado ::class.java)
+            intent.putExtra("correo", correo)
+            intent.putExtra("id", idVenta )
             startActivity(intent)
             this.finish()
         }
@@ -69,6 +72,7 @@ class Detalle_Carrito : AppCompatActivity() {
                             .get()
                             .addOnSuccessListener { document ->
                                 if (document != null && document.exists()) {
+                                    Toast.makeText(this, "Documento obtenido: "+id, Toast.LENGTH_SHORT).show()
                                     val productos = document["productos"] as List<Map<String, Any>>
                                     Log.e("PRODUCTOS", "$productos")
                                     // Calcular el total general
