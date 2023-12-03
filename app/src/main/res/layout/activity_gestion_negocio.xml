@@ -17,28 +17,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/bg_homesell" />
 
-    <Spinner
-        android:id="@+id/spinner3"
-        android:layout_width="367dp"
-        android:layout_height="68dp"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="23dp"
-        android:background="@drawable/rounded_edittext"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNombreNegocio" />
-
-    <Spinner
-        android:id="@+id/spinner4"
-        android:layout_width="367dp"
-        android:layout_height="68dp"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="26dp"
-        android:background="@drawable/rounded_edittext"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNombreNegocio2" />
-
     <EditText
-        android:id="@+id/txtNombreNegocio"
+        android:id="@+id/txt_nombreNegocioEditar"
         android:layout_width="366dp"
         android:layout_height="61dp"
         android:layout_marginStart="11dp"
@@ -55,11 +35,11 @@
         app:layout_constraintTop_toBottomOf="@+id/textView84" />
 
     <EditText
-        android:id="@+id/txtNombreNegocio2"
+        android:id="@+id/txt_nombreOwnerEditar"
         android:layout_width="366dp"
         android:layout_height="61dp"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:hint="Nombre dueño"
@@ -69,7 +49,7 @@
         android:textColorHint="#FFFFFF"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner3" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_rubroNegocioEditar" />
 
     <TextView
         android:id="@+id/txtv_nombreNegocioEdicion"
@@ -123,29 +103,42 @@
         app:layout_constraintTop_toBottomOf="@+id/txtv_nombreUsuarioEdicion" />
 
     <ImageButton
-        android:id="@+id/imageButton17"
+        android:id="@+id/ibtn_editarDatosEditar"
         android:layout_width="163dp"
         android:layout_height="71dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="37dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="76dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner4"
+        app:layout_constraintStart_toEndOf="@+id/ibtn_volverEditarDatos"
+        app:layout_constraintTop_toBottomOf="@+id/txt_nombreOwnerEditar"
         app:srcCompat="@drawable/edit_btn"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
-        android:id="@+id/imageButton18"
+        android:id="@+id/ibtn_volverEditarDatos"
         android:layout_width="179dp"
         android:layout_height="69dp"
-        android:layout_marginTop="37dp"
-        android:layout_marginEnd="11dp"
+        android:layout_marginTop="76dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner4"
+        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_nombreOwnerEditar"
         app:srcCompat="@drawable/confirm_btn"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <EditText
+        android:id="@+id/txt_rubroNegocioEditar"
+        android:layout_width="348dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_nombreNegocioEditar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

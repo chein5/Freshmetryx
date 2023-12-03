@@ -57,7 +57,7 @@
     </ListView>
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/txtv_nombreNegocioVC"
         android:layout_width="273dp"
         android:layout_height="37dp"
         android:layout_marginStart="36dp"
@@ -83,7 +83,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreClienteVC" />
 
     <TextView
         android:id="@+id/textView49"
@@ -102,7 +102,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_scanqrCarrito" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/txtv_nombreClienteVC"
         android:layout_width="170dp"
         android:layout_height="25dp"
         android:layout_marginStart="36dp"
@@ -113,7 +113,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreNegocioVC" />
 
     <ImageButton
         android:id="@+id/btn_scanqrCarrito"

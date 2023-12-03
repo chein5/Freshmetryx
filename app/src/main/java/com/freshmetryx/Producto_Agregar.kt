@@ -15,13 +15,25 @@ import com.google.firebase.ktx.Firebase
 import com.google.zxing.integration.android.IntentIntegrator
 
 class Producto_Agregar : AppCompatActivity() {
+
+    //declaracion de variables
     private lateinit var binding: ActivityProductoAgregarBinding
     val db = Firebase.firestore
-
+    private lateinit var correo : String
+    private lateinit var docId: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_producto_agregar)
         FirebaseApp.initializeApp(this)
+
+        //capturar el correo desde el intent anterior
+        correo = intent.getStringExtra("correo").toString()
+
+
+        docId = ""
+
+        //precargar datos del negocio
+        cargarNegocio()
 
         //Configuracion del view Binding (es una funcion que te permite escribir codigo mas facilmente para interactuar con las vistas)
         binding = ActivityProductoAgregarBinding.inflate(layoutInflater)
@@ -34,6 +46,27 @@ class Producto_Agregar : AppCompatActivity() {
         binding.btnAgregarProducto.setOnClickListener {
             agregarDatos()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        cargarNegocio()
+    }
+    private fun cargarNegocio(){
+        //Mostrar datos del negocio
+        val db = Firebase.firestore
+        db.collection("clientes").whereEqualTo("correo", correo).get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    Log.e("TAG", "${document.id} => ${document.data}")
+                    docId = document.id
+                    binding.txtvNombreNegocioAP.text = document.getString("nombre_negocio")
+                    binding.txtvNombreClienteAP.text = document.getString("nombre_cliente")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Error al cargar los datos del negocio", Toast.LENGTH_SHORT).show()
+            }
     }
 
     /*
@@ -91,8 +124,7 @@ class Producto_Agregar : AppCompatActivity() {
 
         // Verificar si el producto ya existe en la base de datos
         val codigoProducto = binding.txvCodigoProductoAgregar.text.toString()
-        val docRef = db.collection("clientes").document("donde_rosa").collection("Productos").document(codigoProducto)
-
+        val docRef = db.collection("clientes").document(docId).collection("Productos").document(codigoProducto)
         docRef.get()
             .addOnSuccessListener { documentSnapshot ->
                 if (documentSnapshot.exists()) {
@@ -101,28 +133,37 @@ class Producto_Agregar : AppCompatActivity() {
                 } else {
                     // El producto no existe, agregarlo a la colección "Productos"
                     val p = Producto(txtNombre_Scan, txtStock_Scan.toLong(), txtValor_Scan.toLong())
+                    db.collection("clientes").whereEqualTo("correo", correo).get()
+                        .addOnSuccessListener { documents ->
+                            for (document in documents) {
+                                Log.e("TAG", "${document.id} => ${document.data}")
+                                docId = document.id
+                                db.collection("clientes").document(docId).collection("Productos").document(codigoProducto)
+                                    .set(p)
+                                    .addOnSuccessListener { documentReference ->
+                                        Log.d(ContentValues.TAG, "DocumentSnapshot added with ID: $codigoProducto")
+                                        mostrarDatos(codigoProducto)
+                                        // Limpiar los campos después de agregar el producto correctamente
+                                        binding.txtNombreProductoAgregar.text.clear()
+                                        binding.txtStockProductoAgregar.text.clear()
+                                        binding.txtValorProductoAgregar.text.clear()
+                                        binding.txvCodigoProductoAgregar.text = ""
 
-                    db.collection("clientes").document("donde_rosa").collection("Productos").document(codigoProducto)
-                        .set(p)
-                        .addOnSuccessListener { documentReference ->
-                            Log.d(ContentValues.TAG, "DocumentSnapshot added with ID: $codigoProducto")
-                            mostrarDatos(codigoProducto)
-
-                            // Limpiar los campos después de agregar el producto correctamente
-                            binding.txtNombreProductoAgregar.text.clear()
-                            binding.txtStockProductoAgregar.text.clear()
-                            binding.txtValorProductoAgregar.text.clear()
-                            binding.txvCodigoProductoAgregar.text = ""
-
-                            Toast.makeText(
-                                this,
-                                "Se agregó: $p con el código $codigoProducto",
-                                Toast.LENGTH_LONG
-                            ).show()
+                                        Toast.makeText(
+                                            this,
+                                            "Se agregó: $p con el código $codigoProducto",
+                                            Toast.LENGTH_LONG
+                                        ).show()
+                                    }
+                                    .addOnFailureListener { e ->
+                                        Log.w(ContentValues.TAG, "Error adding document", e)
+                                    }
+                            }
                         }
-                        .addOnFailureListener { e ->
-                            Log.w(ContentValues.TAG, "Error adding document", e)
+                        .addOnFailureListener { exception ->
+                            Toast.makeText(this, "Error al cargar los datos del negocio", Toast.LENGTH_SHORT).show()
                         }
+
                 }
             }
             .addOnFailureListener { e ->
@@ -133,7 +174,7 @@ class Producto_Agregar : AppCompatActivity() {
     fun mostrarDatos(consulta : String){
         val db = Firebase.firestore
         Log.e(ContentValues.TAG, "Numero de consulta: $consulta")
-        val docRef= db.collection("clientes").document("donde_rosa").collection("Productos").document(consulta)
+        val docRef= db.collection("clientes").document(docId).collection("Productos").document(consulta)
         docRef.get()
             .addOnSuccessListener { documentSnapshot ->
                 if (documentSnapshot.exists()) {

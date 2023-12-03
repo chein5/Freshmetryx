@@ -3,6 +3,7 @@ package com.freshmetryx
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import java.text.SimpleDateFormat
 import android.widget.ImageButton
 import android.widget.Toast
@@ -20,7 +21,8 @@ class Home : AppCompatActivity() {
 
     //Declaracion de variables
     private lateinit var binding: ActivityHomeBinding
-    private lateinit var correo: String
+    private lateinit var correo : String
+    private lateinit var docId: String
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_Freshmetryx);
         super.onCreate(savedInstanceState)
@@ -43,17 +45,8 @@ class Home : AppCompatActivity() {
         //Recibir correo
         correo = intent.getStringExtra("correo").toString()
 
-        //Mostrar datos del negocio
-        db.collection("clientes").whereEqualTo("correo", correo).get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    binding.txtvNombreNegocioHome.text = document.getString("nombre_negocio")
-                    binding.txtvNombreUsuarioHome.text = document.getString("nombre_cliente")
-                }
-            }
-            .addOnFailureListener { exception ->
-                Toast.makeText(this, "Error al cargar los datos del negocio", Toast.LENGTH_SHORT).show()
-            }
+        //Cargar datos del negocio
+        cargarNegocio()
 
         //Activar boton de scanner
         btnQr = findViewById(R.id.btnEscaner)
@@ -109,31 +102,45 @@ class Home : AppCompatActivity() {
         fechaManana.add(Calendar.DAY_OF_MONTH, 1)
         val timestampFin = Timestamp(formatoFecha.parse(formatoFecha.format(fechaManana.time))!!)
 
+        db.collection("clientes").whereEqualTo("correo", correo).get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    Log.e("TAG", "${document.id} => ${document.data}")
+                    docId = document.id
+                    db.collection("clientes").document(docId).collection("Boleta").whereGreaterThanOrEqualTo("fecha", timestampInicio)
+                        .whereLessThan("fecha", timestampFin)
+                        .get()
+                        .addOnSuccessListener { querySnapshot ->
+                            var totalGeneral = 0.0 // Inicializa la variable para el total general
 
-        db.collection("Boleta").whereGreaterThanOrEqualTo("fecha", timestampInicio)
-            .whereLessThan("fecha", timestampFin)
-            .get()
-            .addOnSuccessListener { querySnapshot ->
-                var totalGeneral = 0.0 // Inicializa la variable para el total general
+                            for (document in querySnapshot.documents) {
+                                if (document != null && document["total"] is Number) {
+                                    // Suma el total al total general
+                                    totalGeneral += (document["total"] as Number).toDouble()
+                                }
+                            }
 
-                for (document in querySnapshot.documents) {
-                    if (document != null && document["total"] is Number) {
-                        // Suma el total al total general
-                        totalGeneral += (document["total"] as Number).toDouble()
-                    }
+                            // Muestra el total general después de procesar todos los documentos
+                            binding.txtIngresosHome.text = totalGeneral.toString()
+                        }
+                        .addOnFailureListener { e ->
+
+                        }
                 }
-
-                // Muestra el total general después de procesar todos los documentos
-                binding.txtIngresosHome.text = totalGeneral.toString()
             }
-            .addOnFailureListener { e ->
-
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Error al cargar los datos del negocio", Toast.LENGTH_SHORT).show()
             }
+
 
     }
 
     override fun onResume() {
         super.onResume()
+        //Mostrar datos del negocio
+        cargarNegocio()
+
+        //captura la fecha actual
         val fechaActual = Calendar.getInstance().time
 
         // Convierte la fecha actual a un Timestamp
@@ -152,24 +159,51 @@ class Home : AppCompatActivity() {
         val timestampFin = Timestamp(formatoFecha.parse(formatoFecha.format(fechaManana.time))!!)
 
         val db = Firebase.firestore
-        db.collection("Boleta").whereGreaterThanOrEqualTo("fecha", timestampInicio)
-            .whereLessThan("fecha", timestampFin)
-            .get()
-            .addOnSuccessListener { querySnapshot ->
-                var totalGeneral = 0.0 // Inicializa la variable para el total general
 
-                for (document in querySnapshot.documents) {
-                    if (document != null && document["total"] is Number) {
-                        // Suma el total al total general
-                        totalGeneral += (document["total"] as Number).toDouble()
-                    }
+        db.collection("clientes").whereEqualTo("correo", correo).get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    Log.e("TAG", "${document.id} => ${document.data}")
+                    docId = document.id
+                    db.collection("clientes").document(docId).collection("Boleta").whereGreaterThanOrEqualTo("fecha", timestampInicio)
+                        .whereLessThan("fecha", timestampFin)
+                        .get()
+                        .addOnSuccessListener { querySnapshot ->
+                            var totalGeneral = 0.0 // Inicializa la variable para el total general
+
+                            for (document in querySnapshot.documents) {
+                                if (document != null && document["total"] is Number) {
+                                    // Suma el total al total general
+                                    totalGeneral += (document["total"] as Number).toDouble()
+                                }
+                            }
+
+                            // Muestra el total general después de procesar todos los documentos
+                            binding.txtIngresosHome.text = totalGeneral.toString()
+                        }
+                        .addOnFailureListener { e ->
+
+                        }
                 }
-
-                // Muestra el total general después de procesar todos los documentos
-                binding.txtIngresosHome.text = "$"+totalGeneral.toString()
             }
-            .addOnFailureListener { e ->
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Error al cargar los datos del negocio", Toast.LENGTH_SHORT).show()
+            }
+    }
 
+
+    //Mostrar datos del negocio
+    private fun cargarNegocio(){
+        val db = Firebase.firestore
+        db.collection("clientes").whereEqualTo("correo", correo).get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    binding.txtvNombreNegocioHome.text = document.getString("nombre_negocio")
+                    binding.txtvNombreUsuarioHome.text = document.getString("nombre_cliente")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Error al cargar los datos del negocio", Toast.LENGTH_SHORT).show()
             }
     }
 }

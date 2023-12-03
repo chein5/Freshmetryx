@@ -37,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/txtv_nombreNegocioDC"
         android:layout_width="273dp"
         android:layout_height="37dp"
         android:layout_marginStart="36dp"
@@ -114,10 +114,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreClienteDC" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/txtv_nombreClienteDC"
         android:layout_width="170dp"
         android:layout_height="25dp"
         android:layout_marginStart="36dp"
@@ -128,7 +128,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreNegocioDC" />
 
     <ImageView
         android:id="@+id/icon_user_ventacarrito2"

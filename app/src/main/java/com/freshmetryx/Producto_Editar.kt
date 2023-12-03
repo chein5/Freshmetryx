@@ -3,6 +3,7 @@ package com.freshmetryx
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.core.text.set
 import com.freshmetryx.databinding.ActivityProductoAgregarBinding
@@ -16,7 +17,8 @@ class Producto_Editar : AppCompatActivity() {
 
     //Declaracion de variables
     private lateinit var binding: ActivityProductoEditarBinding
-
+    private lateinit var correo: String
+    private lateinit var docId: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_producto_editar)
@@ -26,6 +28,14 @@ class Producto_Editar : AppCompatActivity() {
         //Configuracion del view Binding (es una funcion que te permite escribir codigo mas facilmente para interactuar directamente con las vistas)
         binding = ActivityProductoEditarBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //Recibir correo
+        correo = intent.getStringExtra("correo").toString()
+
+        docId = ""
+
+        //precargar datos del negocio
+        cargarNegocio()
 
         //Se activa la funcion de escanear al presionar el boton
         binding.btnEscanearProductoEditar.setOnClickListener{( initScanner())}
@@ -78,6 +88,22 @@ class Producto_Editar : AppCompatActivity() {
         }
     }
 
+    private fun cargarNegocio(){
+        //Mostrar datos del negocio
+        val db = Firebase.firestore
+        db.collection("clientes").whereEqualTo("correo", correo).get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    Log.e("TAG", "${document.id} => ${document.data}")
+                    docId = document.id
+                    binding.txtvNombreNegocioPE.text = document.getString("nombre_negocio")
+                    binding.txtvNombreClientePE.text = document.getString("nombre_cliente")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Error al cargar los datos del negocio", Toast.LENGTH_SHORT).show()
+            }
+    }
     fun mostrarDatos() {
         val db = Firebase.firestore
         val codigo = binding.txtCodigoEditarManual.text.toString()
@@ -89,14 +115,12 @@ class Producto_Editar : AppCompatActivity() {
         }
 
         // Verificar si el producto existe en la base de datos
-        db.collection("Productos").document(codigo).get().addOnSuccessListener { documentSnapshot ->
+        db.collection("clientes").document(docId).collection("Productos").document(codigo).get().addOnSuccessListener { documentSnapshot ->
             if (documentSnapshot.exists()) {
-
                 binding.txtNombreEditar.setText(documentSnapshot.get("nombre").toString())
                 binding.txtValorEditar.setText(documentSnapshot.get("valor").toString())
                 binding.txtStockEditar.setText(documentSnapshot.get("stock").toString())
             } else {
-
                 Toast.makeText(this, "El producto con el código $codigo no existe", Toast.LENGTH_LONG).show()
             }
         }.addOnFailureListener {
@@ -128,7 +152,7 @@ class Producto_Editar : AppCompatActivity() {
             "valor" to valor
         )
 
-        db.collection("Productos").document(codigo).update(
+        db.collection("clientes").document(docId).collection("Productos").document(codigo).update(
             nuevosDatos as Map<String, Any>
         ).addOnSuccessListener {
             Toast.makeText(this, "Se editó el producto con el código: $codigo", Toast.LENGTH_LONG).show()
@@ -148,11 +172,27 @@ class Producto_Editar : AppCompatActivity() {
         }
 
         val db = Firebase.firestore
-        db.collection("Productos").document(codigo).delete().addOnSuccessListener {
-            Toast.makeText(this, "Se eliminó el producto con el código: $codigo", Toast.LENGTH_LONG).show()
-        }.addOnFailureListener {
-            Toast.makeText(this, "No se encontró el producto: $codigo", Toast.LENGTH_LONG).show()
-        }
+        db.collection("clientes").whereEqualTo("correo", correo).get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    Log.e("TAG", "${document.id} => ${document.data}")
+                    docId = document.id
+                    db.collection("clientes").document(docId).collection("Productos").document(codigo).delete().addOnSuccessListener {
+                        Toast.makeText(this, "Se eliminó el producto con el código: $codigo", Toast.LENGTH_LONG).show()
+                        // Clear all the text fields
+                        binding.txtNombreEditar.setText("")
+                        binding.txtStockEditar.setText("")
+                        binding.txtValorEditar.setText("")
+                        binding.txtCodigoEditarManual.setText("")
+                    }.addOnFailureListener {
+                        Toast.makeText(this, "No se encontró el producto: $codigo", Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Error al cargar los datos del negocio", Toast.LENGTH_SHORT).show()
+            }
+
     }
 
 

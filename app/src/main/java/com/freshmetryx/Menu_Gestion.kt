@@ -62,4 +62,28 @@ class Menu_Gestion : AppCompatActivity() {
 
 
     }
+
+    /*
+    Cuando se vuelva al activity se recargaran los datos del negocio si por si es que fueron editados.
+
+     */
+    override fun onResume() {
+        super.onResume()
+        cargarNegocio()
+    }
+
+    //Mostrar datos del negocio
+    private fun cargarNegocio(){
+        val db = Firebase.firestore
+        db.collection("clientes").whereEqualTo("correo", correo).get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    binding.txtvNombreNegocioCuenta.text = document.getString("nombre_negocio")
+                    binding.txtvNombreUsuarioCuenta.text = document.getString("nombre_cliente")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Error al cargar los datos del negocio", Toast.LENGTH_SHORT).show()
+            }
+    }
 }

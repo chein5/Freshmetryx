@@ -33,7 +33,7 @@
         app:srcCompat="@drawable/bg_listcarrito2" />
 
     <TextView
-        android:id="@+id/textView39"
+        android:id="@+id/txtv_nombreNegocioPL"
         android:layout_width="273dp"
         android:layout_height="37dp"
         android:layout_marginStart="36dp"
@@ -46,7 +46,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView40"
+        android:id="@+id/txtv_nombreClientePL"
         android:layout_width="170dp"
         android:layout_height="25dp"
         android:layout_marginStart="36dp"
@@ -57,7 +57,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView39" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreNegocioPL" />
 
     <ImageView
         android:id="@+id/imageView18"
@@ -97,6 +97,6 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView40" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreClientePL" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

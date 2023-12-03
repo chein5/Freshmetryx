@@ -18,7 +18,7 @@
         app:srcCompat="@drawable/bg_home" />
 
     <TextView
-        android:id="@+id/textView32"
+        android:id="@+id/txtv_nombreNegocioAM"
         android:layout_width="280dp"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView47"
+        android:id="@+id/txtv_nombreClienteAM"
         android:layout_width="170dp"
         android:layout_height="29dp"
         android:layout_marginStart="16dp"
@@ -42,7 +42,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView32" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreNegocioAM" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -100,7 +100,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView47" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreClienteAM" />
 
     <TextView
         android:id="@+id/textView4"

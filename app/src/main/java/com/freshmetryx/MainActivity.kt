@@ -23,6 +23,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var txtStock_Scan : TextView
     private lateinit var txtValor_Scan : TextView
     private lateinit var txtCodigo_Scan : TextView
+    private lateinit var correo : String
+    private lateinit var docId: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -30,7 +32,13 @@ class MainActivity : AppCompatActivity() {
         //Configuracion del view Binding (es una funcion que te permite escribir codigo mas facilmente para interactuar con las vistas)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         binding.btnActivarQR.setOnClickListener{( initScanner())}
+
+        //capturar el correo desde el intent anterior
+        correo = ""
+        correo = intent.getStringExtra("correo").toString()
+
 
 
     }
@@ -69,35 +77,66 @@ class MainActivity : AppCompatActivity() {
         txtStock_Scan = findViewById(R.id.txtStock_Scan)
         txtValor_Scan = findViewById(R.id.txtValor_Scan)
         txtCodigo_Scan= findViewById(R.id.txtCodigo_Scan)
-        val docRef= db.collection("Productos").document(consulta)
 
-        docRef.get()
-            .addOnSuccessListener { documentSnapshot ->
-                if (documentSnapshot.exists()) {
-                    Log.e(TAG, "Encontro el dato")
-                    // Obtener los datos del documento
-                    val data = documentSnapshot.data
+        db.collection("clientes").whereEqualTo("correo", correo).get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    Log.e("TAG", "${document.id} => ${document.data}")
+                    docId = document.id
+                    db.collection("clientes").document(docId).collection("Productos").document(consulta).get()
+                        .addOnSuccessListener { documentSnapshot ->
+                            if (documentSnapshot.exists()) {
+                                Log.e(TAG, "Encontro el dato")
+                                // Obtener los datos del documento
+                                val data = documentSnapshot.data
 
-                    // Mostrar los datos en los TextField
-                    if (data != null) {
-                        Toast.makeText(this,"Datos encontrados", Toast.LENGTH_LONG ).show()
-                        // Suponiendo que tienes TextField llamados textfield1, textfield2, etc.
-                        txtNombre_Scan.setText("Nombre: "+data["nombre"].toString())
-                        txtStock_Scan.setText("Stock: "+data["stock"].toString())
-                        txtValor_Scan.setText("Valor: " +data["valor"].toString())
-                        txtCodigo_Scan.setText("Codigo: "+ consulta)
-                        // Añade más líneas para otros campos según sea necesario
-                    }
-                } else {
-                    Toast.makeText(this,"No se encontro el dato", Toast.LENGTH_LONG ).show()
+                                // Mostrar los datos en los TextField
+                                if (data != null) {
+                                    Toast.makeText(this,"Datos encontrados", Toast.LENGTH_LONG ).show()
+                                    // Suponiendo que tienes TextField llamados textfield1, textfield2, etc.
+                                    txtNombre_Scan.setText("Nombre: "+data["nombre"].toString())
+                                    txtStock_Scan.setText("Stock: "+data["stock"].toString())
+                                    txtValor_Scan.setText("Valor: " +data["valor"].toString())
+                                    txtCodigo_Scan.setText("Codigo: "+ consulta)
+                                    // Añade más líneas para otros campos según sea necesario
+                                }
+                            } else {
+                                Toast.makeText(this,"No se encontro el dato", Toast.LENGTH_LONG ).show()
+                            }
+                        }
+                        .addOnFailureListener { e ->
+                            // Manejar errores en la lectura del documento
+                            Log.e(TAG, "Error al obtener documento: $e")
+                        }
                 }
             }
-            .addOnFailureListener { e ->
-                // Manejar errores en la lectura del documento
-                Log.e(TAG, "Error al obtener documento: $e")
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Error al cargar los datos del negocio", Toast.LENGTH_SHORT).show()
             }
+
 
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        cargarNegocio()
+    }
+
+    private fun cargarNegocio(){
+        //Mostrar datos del negocio
+        val db = Firebase.firestore
+        db.collection("clientes").whereEqualTo("correo", correo).get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    Log.e("TAG", "${document.id} => ${document.data}")
+                    docId = document.id
+                    binding.txtvNombreNegocioAM.text = document.getString("nombre_negocio")
+                    binding.txtvNombreClienteAM.text = document.getString("nombre_cliente")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Error al cargar los datos del negocio", Toast.LENGTH_SHORT).show()
+            }
+    }
 }

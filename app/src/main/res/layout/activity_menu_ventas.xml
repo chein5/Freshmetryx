@@ -20,7 +20,7 @@
         app:srcCompat="@drawable/bg_homesell" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/txtv_nombreNegocioMV"
         android:layout_width="273dp"
         android:layout_height="37dp"
         android:layout_marginStart="24dp"
@@ -33,7 +33,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/txtv_nombreClienteMV"
         android:layout_width="170dp"
         android:layout_height="25dp"
         android:layout_marginStart="24dp"
@@ -43,7 +43,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreNegocioMV" />
 
     <TextView
         android:id="@+id/textView12"
