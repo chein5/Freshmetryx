@@ -26,6 +26,7 @@ class Menu_Check_In : AppCompatActivity() {
         binding.IbtnHistoriapedidoMenu.setOnClickListener {
             val intent = Intent(this, Historial_Check_In ::class.java)
             intent.putExtra("correo", correo)
+            startActivity(intent)
         }
 
         //Iniciar el modulo de chech in
