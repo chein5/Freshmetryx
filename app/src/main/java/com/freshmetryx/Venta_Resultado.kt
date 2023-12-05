@@ -143,19 +143,22 @@ class Venta_Resultado : AppCompatActivity() {
                                                 add(Chunk("\n\n")) // Dos saltos de línea
 
                                                 // Agregar detalles de venta
-                                                add(Chunk("Detalles de Venta:", Font(Font.FontFamily.HELVETICA, 18f, Font.BOLD)))
-                                                val total = documentSnapshot.get("total")
-                                                val total_cantProd = documentSnapshot.get("total_cantProd")
-                                                add(Chunk("$total_cantProd: $total", Font(Font.FontFamily.HELVETICA, 14f, Font.NORMAL)))
+                                                add(Chunk("Detalles de Venta: \n", Font(Font.FontFamily.HELVETICA, 18f, Font.BOLD)))
 
                                                 // Obtener el mapa de productos
-                                                val productosMap = documentSnapshot["producto"] as Map<String, Any>?
-                                                productosMap?.forEach { (producto, detallesProducto) ->
-                                                    val nombreProducto = detallesProducto["nombre"] as String
-                                                    val cantidadProducto = detallesProducto["cantidad"] as Long
-                                                    add(Chunk("$nombreProducto: $cantidadProducto unidades", Font(Font.FontFamily.HELVETICA, 14f, Font.NORMAL)))
-                                                    add(Chunk("\n")) // Salto de línea después de cada detalle
+                                                val productosList = documentSnapshot["productos"] as? ArrayList<Map<String, Any>>
+                                                productosList?.forEach { detallesProducto ->
+                                                    val nombreProducto = detallesProducto["nombre_producto"] as? String
+                                                    val cantidadProducto = detallesProducto["cantidad_producto"] as? Long
+                                                    val precioProducto = detallesProducto["precio_producto"] as? Long
+                                                    if (nombreProducto != null && cantidadProducto != null) {
+                                                        add(Chunk(" $nombreProducto: $cantidadProducto unidades, precio: $ ${precioProducto}", Font(Font.FontFamily.HELVETICA, 14f, Font.NORMAL)))
+                                                        add(Chunk("\n")) // Salto de línea después de cada detalle
+                                                    }
                                                 }
+                                                val total = documentSnapshot.get("total")
+                                                val total_cantProd = documentSnapshot.get("total_cantProd")
+                                                add(Chunk("Total General: $$total  Cantidad de productos: ${total_cantProd}", Font(Font.FontFamily.HELVETICA, 14f, Font.NORMAL)))
                                             }
                                             document.add(paragraph)
 
