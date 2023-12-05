@@ -13,12 +13,14 @@
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/bg_home" />
 
     <TextView
-        android:id="@+id/textView89"
+        android:id="@+id/txtv_nombreClietneGM"
         android:layout_width="273dp"
         android:layout_height="37dp"
         android:layout_marginStart="36dp"
@@ -31,7 +33,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView90"
+        android:id="@+id/txtv_nombreNegocioGM"
         android:layout_width="170dp"
         android:layout_height="25dp"
         android:layout_marginStart="36dp"
@@ -42,7 +44,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView89" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreClietneGM" />
 
     <ImageView
         android:id="@+id/imageView37"
@@ -50,7 +52,7 @@
         android:layout_height="56dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintStart_toEndOf="@+id/textView89"
+        app:layout_constraintStart_toEndOf="@+id/txtv_nombreClietneGM"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/user_icon" />
 
@@ -66,7 +68,7 @@
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView90" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreNegocioGM" />
 
     <TextView
         android:id="@+id/textView92"
@@ -84,65 +86,34 @@
 
     <TextView
         android:id="@+id/textView93"
-        android:layout_width="110dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="141dp"
-        android:layout_marginTop="11dp"
-        android:text="Desde"
+        android:layout_width="111dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="36dp"
+        android:text="Tipo Membresia"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView92" />
 
-    <TextView
-        android:id="@+id/textView94"
-        android:layout_width="110dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="141dp"
-        android:layout_marginTop="10dp"
-        android:text="Hasta"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
-
     <EditText
-        android:id="@+id/editTextDate"
+        android:id="@+id/txt_tipoMembresia"
         android:layout_width="309dp"
         android:layout_height="50dp"
+        android:gravity="center"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="#000000"
+        android:clickable="false"
         android:ems="10"
         android:inputType="date"
+        android:textColor="#000000"
+        android:textColorHighlight="#000000"
+        android:textColorHint="#000000"
+        android:textColorLink="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView93"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <EditText
-        android:id="@+id/editTextDate2"
-        android:layout_width="309dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:inputType="date"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView94"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <ImageButton
-        android:id="@+id/imageButton32"
-        android:layout_width="310dp"
-        android:layout_height="101dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="27dp"
-        android:background="#00FFFFFF"
-        android:scaleType="fitCenter"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDate2"
-        app:srcCompat="@drawable/renovar_btn"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
@@ -150,11 +121,11 @@
         android:layout_width="310dp"
         android:layout_height="101dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="96dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton32"
+        app:layout_constraintTop_toBottomOf="@+id/txt_tipoMembresia"
         app:srcCompat="@drawable/membresiaestado_btn"
         tools:ignore="SpeakableTextPresentCheck" />
 
