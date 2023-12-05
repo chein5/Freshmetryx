@@ -29,10 +29,13 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.freshmetryx.databinding.ActivityVentaResultadoBinding
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import com.itextpdf.text.Chunk
 import com.itextpdf.text.Document
+import com.itextpdf.text.Font
 import com.itextpdf.text.Paragraph
 import com.itextpdf.text.pdf.PdfWriter
 import java.io.File
@@ -40,6 +43,7 @@ import java.io.FileOutputStream
 import java.io.OutputStream
 import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.Locale
 
 class Venta_Resultado : AppCompatActivity() {
 
@@ -91,7 +95,7 @@ class Venta_Resultado : AppCompatActivity() {
 
 
     @RequiresApi(Build.VERSION_CODES.Q)
-    fun exportToPdf(idVenta:String) {
+    fun exportToPdf(idVenta: String) {
         val db = Firebase.firestore
         db.collection("clientes").whereEqualTo("correo", correo).get()
             .addOnSuccessListener { documents ->
@@ -105,32 +109,72 @@ class Venta_Resultado : AppCompatActivity() {
                                 val currentDate = sdf.format(Date())
                                 val document = Document()
                                 val resolver = contentResolver
+                                var fecha_hora = documentSnapshot.getTimestamp("fecha")
+                                val formatoFecha = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale("es", "ES"))
+                                val fechaFormateada = formatoFecha.format(fecha_hora!!.toDate())
                                 val contentValues = ContentValues().apply {
-                                    put(MediaStore.MediaColumns.DISPLAY_NAME, "DetalleVenta_${currentDate}.pdf")
+                                    put(MediaStore.MediaColumns.DISPLAY_NAME, "DetalleVenta_${fechaFormateada}.pdf")
                                     put(MediaStore.MediaColumns.MIME_TYPE, "application/pdf")
                                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                                         put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS)
                                     }
                                 }
                                 val pdfUri = resolver.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, contentValues)
-                                val outputStream: OutputStream = resolver.openOutputStream(pdfUri!!)!!
 
-                                PdfWriter.getInstance(document, outputStream)
-                                document.open()
+                                pdfUri?.let {
+                                    val outputStream: OutputStream? = resolver.openOutputStream(pdfUri)
+                                    outputStream?.let {
+                                        PdfWriter.getInstance(document, outputStream)
+                                        document.open()
 
-                                val data = documentSnapshot.data
-                                val paragraph = Paragraph(data.toString())
-                                document.add(paragraph)
+                                        // Contenido del PDF
+                                        val data = documentSnapshot.data
+                                        if (data != null) {
+                                            // Configurar el tamaño y estilo del texto
+                                            val font = Font(Font.FontFamily.HELVETICA, 20f, Font.BOLD)
 
-                                document.close()
-                                Toast.makeText(this, "PDF guardado en Descargas", Toast.LENGTH_LONG).show()
+                                            // Agregar contenido al PDF
+                                            val paragraph = Paragraph().apply {
+                                                // Agregar salto de línea antes de la siguiente línea
+                                                spacingBefore = 10f
+                                                add(Chunk("Detalle de Venta", Font(Font.FontFamily.HELVETICA, 24f, Font.BOLD)))
+                                                add(Chunk("\n")) // Salto de línea
+                                                add(Chunk("Fecha de Venta: ${currentDate}", Font(Font.FontFamily.HELVETICA, 16f, Font.NORMAL)))
+                                                add(Chunk("\n\n")) // Dos saltos de línea
 
-                                // Open the PDF
-                                val openPdfIntent = Intent(Intent.ACTION_VIEW).apply {
-                                    setDataAndType(pdfUri, "application/pdf")
-                                    addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                                }
-                                startActivity(openPdfIntent)
+                                                // Agregar detalles de venta
+                                                add(Chunk("Detalles de Venta:", Font(Font.FontFamily.HELVETICA, 18f, Font.BOLD)))
+                                                val total = documentSnapshot.get("total")
+                                                val total_cantProd = documentSnapshot.get("total_cantProd")
+                                                add(Chunk("$total_cantProd: $total", Font(Font.FontFamily.HELVETICA, 14f, Font.NORMAL)))
+
+                                                // Obtener el mapa de productos
+                                                val productosMap = documentSnapshot["producto"] as Map<String, Any>?
+                                                productosMap?.forEach { (producto, detallesProducto) ->
+                                                    val nombreProducto = detallesProducto["nombre"] as String
+                                                    val cantidadProducto = detallesProducto["cantidad"] as Long
+                                                    add(Chunk("$nombreProducto: $cantidadProducto unidades", Font(Font.FontFamily.HELVETICA, 14f, Font.NORMAL)))
+                                                    add(Chunk("\n")) // Salto de línea después de cada detalle
+                                                }
+                                            }
+                                            document.add(paragraph)
+
+                                            // Puedes continuar agregando más contenido según tus necesidades
+
+                                            document.close()
+                                            Toast.makeText(this, "PDF guardado en Descargas", Toast.LENGTH_LONG).show()
+
+                                            // Abrir el PDF
+                                            val openPdfIntent = Intent(Intent.ACTION_VIEW).apply {
+                                                setDataAndType(pdfUri, "application/pdf")
+                                                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                                            }
+                                            startActivity(openPdfIntent)
+                                        } else {
+                                            Log.e(TAG, "Document data is null")
+                                        }
+                                    } ?: Log.e(TAG, "OutputStream is null")
+                                } ?: Log.e(TAG, "pdfUri is null")
                             }
                         }
                         .addOnFailureListener { exception ->
@@ -141,8 +185,10 @@ class Venta_Resultado : AppCompatActivity() {
             .addOnFailureListener { exception ->
                 Toast.makeText(this, "Error al cargar los datos del negocio", Toast.LENGTH_SHORT).show()
             }
-
     }
+
+
+
     private fun requestStoragePermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
