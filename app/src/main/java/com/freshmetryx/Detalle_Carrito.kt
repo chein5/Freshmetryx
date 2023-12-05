@@ -8,9 +8,11 @@ import android.util.Log
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.freshmetryx.databinding.ActivityDetalleCarritoBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class Detalle_Carrito : AppCompatActivity() {
     lateinit var txt_totalDetalle : TextView
@@ -38,6 +40,7 @@ class Detalle_Carrito : AppCompatActivity() {
 
         //precargar datos del negocio
         cargarNegocio()
+        cargarImagen()
 
         //Accion del boton listo
         btnListo = findViewById(R.id.btnListoCompra);
@@ -110,8 +113,24 @@ class Detalle_Carrito : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         cargarNegocio()
+        cargarImagen()
     }
 
+    private fun cargarImagen(){
+        val storageReference = Firebase.storage.getReferenceFromUrl("gs://freshmetryx-aa049.appspot.com")
+        val imageRef = storageReference.child("/${correo}/photos/logo.jpg")
+
+
+        imageRef.downloadUrl.addOnSuccessListener { downloadUrl ->
+            // Use Glide to load the image into the ImageView
+            Glide.with(this@Detalle_Carrito)
+                .load(downloadUrl)
+                .into(binding.iconUserVentacarrito2)
+        }.addOnFailureListener {
+            // Handle any errors
+            Toast.makeText(this, "Error al cargar la imagen", Toast.LENGTH_SHORT).show()
+        }
+    }
     private fun cargarNegocio(){
         //Mostrar datos del negocio
         val db = Firebase.firestore

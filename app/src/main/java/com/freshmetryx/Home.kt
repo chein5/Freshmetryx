@@ -7,6 +7,7 @@ import android.util.Log
 import java.text.SimpleDateFormat
 import android.widget.ImageButton
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.freshmetryx.databinding.ActivityHomeBinding
 import com.freshmetryx.databinding.ActivityProductoEditarBinding
 import com.google.firebase.FirebaseApp
@@ -14,6 +15,7 @@ import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import java.util.Calendar
 import java.util.Locale
 
@@ -141,13 +143,30 @@ class Home : AppCompatActivity() {
             }
 
 
+            cargarImagen()
+
     }
 
+    private fun cargarImagen(){
+        val storageReference = Firebase.storage.getReferenceFromUrl("gs://freshmetryx-aa049.appspot.com")
+        val imageRef = storageReference.child("/${correo}/photos/logo.jpg")
+
+
+        imageRef.downloadUrl.addOnSuccessListener { downloadUrl ->
+            // Use Glide to load the image into the ImageView
+            Glide.with(this@Home)
+                .load(downloadUrl)
+                .into(binding.imageView4)
+        }.addOnFailureListener {
+            // Handle any errors
+            Toast.makeText(this, "Error al cargar la imagen", Toast.LENGTH_SHORT).show()
+        }
+    }
     override fun onResume() {
         super.onResume()
         //Mostrar datos del negocio
         cargarNegocio()
-
+        cargarImagen()
         //captura la fecha actual
         val fechaActual = Calendar.getInstance().time
 

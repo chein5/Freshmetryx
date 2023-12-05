@@ -4,10 +4,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.freshmetryx.databinding.ActivityGestionNegocioBinding
 import com.freshmetryx.databinding.ActivityMenuGestionBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class Menu_Gestion : AppCompatActivity() {
 
@@ -46,14 +48,7 @@ class Menu_Gestion : AppCompatActivity() {
             startActivity(intent)
         }
 
-        //iniciar el menu de gestion del perfil
-        /*
-        binding.ibtnGestionPerfilPanel.setOnClickListener {
-            val intent = Intent(this, Gestion_Perfil::class.java)
-            intent.putExtra("correo", correo)
-            startActivity(intent)
-        }
-        */
+
         //iniciar el menu de gestion de membresia
         binding.ibtnGestionMembresiaPanel.setOnClickListener {
             val intent = Intent(this, Gestion_Membresia::class.java)
@@ -62,6 +57,7 @@ class Menu_Gestion : AppCompatActivity() {
         }
 
 
+        cargarImagen()
     }
 
     /*
@@ -71,6 +67,7 @@ class Menu_Gestion : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         cargarNegocio()
+        cargarImagen()
     }
 
     //Mostrar datos del negocio
@@ -81,10 +78,27 @@ class Menu_Gestion : AppCompatActivity() {
                 for (document in documents) {
                     binding.txtvNombreNegocioCuenta.text = document.getString("nombre_negocio")
                     binding.txtvNombreUsuarioCuenta.text = document.getString("nombre_cliente")
+                    cargarImagen()
                 }
             }
             .addOnFailureListener { exception ->
                 Toast.makeText(this, "Error al cargar los datos del negocio", Toast.LENGTH_SHORT).show()
             }
+    }
+
+    private fun cargarImagen(){
+        val storageReference = Firebase.storage.getReferenceFromUrl("gs://freshmetryx-aa049.appspot.com")
+        val imageRef = storageReference.child("/${correo}/photos/logo.jpg")
+
+
+        imageRef.downloadUrl.addOnSuccessListener { downloadUrl ->
+            // Use Glide to load the image into the ImageView
+            Glide.with(this@Menu_Gestion)
+                .load(downloadUrl)
+                .into(binding.imageView31)
+        }.addOnFailureListener {
+            // Handle any errors
+            Toast.makeText(this, "Error al cargar la imagen", Toast.LENGTH_SHORT).show()
+        }
     }
 }

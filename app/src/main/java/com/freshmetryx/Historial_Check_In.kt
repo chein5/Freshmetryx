@@ -41,6 +41,7 @@ class Historial_Check_In : AppCompatActivity() {
         correo = intent.getStringExtra("correo").toString()
 
         cargarNegocio()
+        cargarImagen()
         llenarListInventario()
     }
 
@@ -57,11 +58,28 @@ class Historial_Check_In : AppCompatActivity() {
                     docId = document.id
                     binding.txtvNombreNegocioHC.text = document.getString("nombre_negocio")
                     binding.txtvNombreClienteHC.text = document.getString("nombre_cliente")
+                    cargarImagen()
                 }
             }
             .addOnFailureListener { exception ->
                 Toast.makeText(this, "Error al cargar los datos del negocio", Toast.LENGTH_SHORT).show()
             }
+    }
+
+    private fun cargarImagen(){
+        val storageReference = Firebase.storage.getReferenceFromUrl("gs://freshmetryx-aa049.appspot.com")
+        val imageRef = storageReference.child("/${correo}/photos/logo.jpg")
+
+
+        imageRef.downloadUrl.addOnSuccessListener { downloadUrl ->
+            // Use Glide to load the image into the ImageView
+            Glide.with(this@Historial_Check_In)
+                .load(downloadUrl)
+                .into(binding.imageView17)
+        }.addOnFailureListener {
+            // Handle any errors
+            Toast.makeText(this, "Error al cargar la imagen", Toast.LENGTH_SHORT).show()
+        }
     }
     @RequiresApi(Build.VERSION_CODES.O)
     fun llenarListInventario() {

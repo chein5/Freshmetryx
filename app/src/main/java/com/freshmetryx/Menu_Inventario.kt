@@ -7,9 +7,11 @@ import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.freshmetryx.databinding.ActivityMenuInventarioBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class Menu_Inventario : AppCompatActivity() {
     private lateinit var binding: ActivityMenuInventarioBinding
@@ -58,7 +60,7 @@ class Menu_Inventario : AppCompatActivity() {
             startActivity(intent)
         }
 
-
+        cargarImagen()
     }
 
     override fun onResume() {
@@ -76,10 +78,27 @@ class Menu_Inventario : AppCompatActivity() {
                     docId = document.id
                     binding.txtvNombreNegocioMI.text = document.getString("nombre_negocio")
                     binding.txtvNombreClienteMI.text = document.getString("nombre_cliente")
+                    cargarImagen()
                 }
             }
             .addOnFailureListener { exception ->
                 Toast.makeText(this, "Error al cargar los datos del negocio", Toast.LENGTH_SHORT).show()
             }
+    }
+
+    private fun cargarImagen(){
+        val storageReference = Firebase.storage.getReferenceFromUrl("gs://freshmetryx-aa049.appspot.com")
+        val imageRef = storageReference.child("/${correo}/photos/logo.jpg")
+
+
+        imageRef.downloadUrl.addOnSuccessListener { downloadUrl ->
+            // Use Glide to load the image into the ImageView
+            Glide.with(this@Menu_Inventario)
+                .load(downloadUrl)
+                .into(binding.imageView12)
+        }.addOnFailureListener {
+            // Handle any errors
+            Toast.makeText(this, "Error al cargar la imagen", Toast.LENGTH_SHORT).show()
+        }
     }
 }

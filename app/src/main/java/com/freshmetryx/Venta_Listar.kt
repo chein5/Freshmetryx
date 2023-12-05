@@ -8,11 +8,13 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import com.bumptech.glide.Glide
 import com.freshmetryx.databinding.ActivityVentaListarBinding
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class Venta_Listar : AppCompatActivity() {
     private lateinit var binding: ActivityVentaListarBinding
@@ -40,14 +42,30 @@ class Venta_Listar : AppCompatActivity() {
 
         //funcion para cargar los datos en la lista de ventas
         llenarList()
-
+        cargarImagen()
     }
 
     override fun onResume() {
         super.onResume()
         cargarNegocio()
+        cargarImagen()
     }
 
+    private fun cargarImagen(){
+        val storageReference = Firebase.storage.getReferenceFromUrl("gs://freshmetryx-aa049.appspot.com")
+        val imageRef = storageReference.child("/${correo}/photos/logo.jpg")
+
+
+        imageRef.downloadUrl.addOnSuccessListener { downloadUrl ->
+            // Use Glide to load the image into the ImageView
+            Glide.with(this@Venta_Listar)
+                .load(downloadUrl)
+                .into(binding.imageView22)
+        }.addOnFailureListener {
+            // Handle any errors
+            Toast.makeText(this, "Error al cargar la imagen", Toast.LENGTH_SHORT).show()
+        }
+    }
     private fun cargarNegocio(){
         val db = Firebase.firestore
         db.collection("clientes").whereEqualTo("correo", correo).get()

@@ -7,9 +7,11 @@ import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import com.bumptech.glide.Glide
 import com.freshmetryx.databinding.ActivityProductosListarBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class Productos_Listar : AppCompatActivity() {
 
@@ -37,6 +39,23 @@ class Productos_Listar : AppCompatActivity() {
         cargarNegocio()
 
         llenarListInventario()
+        cargarImagen()
+    }
+
+    private fun cargarImagen(){
+        val storageReference = Firebase.storage.getReferenceFromUrl("gs://freshmetryx-aa049.appspot.com")
+        val imageRef = storageReference.child("/${correo}/photos/logo.jpg")
+
+
+        imageRef.downloadUrl.addOnSuccessListener { downloadUrl ->
+            // Use Glide to load the image into the ImageView
+            Glide.with(this@Productos_Listar)
+                .load(downloadUrl)
+                .into(binding.imageView18)
+        }.addOnFailureListener {
+            // Handle any errors
+            Toast.makeText(this, "Error al cargar la imagen", Toast.LENGTH_SHORT).show()
+        }
     }
     private fun cargarNegocio(){
         //Mostrar datos del negocio
@@ -48,6 +67,7 @@ class Productos_Listar : AppCompatActivity() {
                     docId = document.id
                     binding.txtvNombreNegocioPL.text = document.getString("nombre_negocio")
                     binding.txtvNombreClientePL.text = document.getString("nombre_cliente")
+                    cargarImagen()
                 }
             }
             .addOnFailureListener { exception ->

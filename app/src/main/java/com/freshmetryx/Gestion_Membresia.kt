@@ -3,9 +3,11 @@ package com.freshmetryx
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.freshmetryx.databinding.ActivityGestionMembresiaBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class Gestion_Membresia : AppCompatActivity() {
 
@@ -29,6 +31,7 @@ class Gestion_Membresia : AppCompatActivity() {
         docId=""
 
         cargarNegocio()
+        cargarImagen()
 
     }
 
@@ -43,10 +46,27 @@ class Gestion_Membresia : AppCompatActivity() {
                     binding.txtvNombreClietneGM.text = document.getString("nombre_cliente")
                     binding.txtTipoMembresia.setText(document.getString("suscripcion"))
                     binding.txtTipoMembresia.isEnabled = false
+                    cargarImagen()
                 }
             }
             .addOnFailureListener { exception ->
                 Toast.makeText(this, "Error al cargar los datos del negocio", Toast.LENGTH_SHORT).show()
             }
+    }
+
+    private fun cargarImagen(){
+        val storageReference = Firebase.storage.getReferenceFromUrl("gs://freshmetryx-aa049.appspot.com")
+        val imageRef = storageReference.child("/${correo}/photos/logo.jpg")
+
+
+        imageRef.downloadUrl.addOnSuccessListener { downloadUrl ->
+            // Use Glide to load the image into the ImageView
+            Glide.with(this@Gestion_Membresia)
+                .load(downloadUrl)
+                .into(binding.imageView37)
+        }.addOnFailureListener {
+            // Handle any errors
+            Toast.makeText(this, "Error al cargar la imagen", Toast.LENGTH_SHORT).show()
+        }
     }
 }

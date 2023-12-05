@@ -27,8 +27,11 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
+import com.freshmetryx.databinding.ActivityVentaResultadoBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import com.itextpdf.text.Document
 import com.itextpdf.text.Paragraph
 import com.itextpdf.text.pdf.PdfWriter
@@ -46,6 +49,8 @@ class Venta_Resultado : AppCompatActivity() {
     private lateinit var correo : String
     private lateinit var docId: String
     private val STORAGE_PERMISSION_CODE = 100
+    private lateinit var binding: ActivityVentaResultadoBinding
+
     var tituloText = "Venta Realizada"
     var descripcionText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     var REQUEST_CODE= 1234
@@ -53,6 +58,9 @@ class Venta_Resultado : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_venta_resultado)
+
+        binding = ActivityVentaResultadoBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         correo = ""
         //capturar el correo y el id desde el intent anterior
@@ -79,6 +87,7 @@ class Venta_Resultado : AppCompatActivity() {
             exportToPdf(idVenta)
         }
     }
+
 
 
     @RequiresApi(Build.VERSION_CODES.Q)

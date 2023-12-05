@@ -15,11 +15,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.view.isEmpty
+import com.bumptech.glide.Glide
 import com.freshmetryx.databinding.ActivityVentaCarritoBinding
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import com.google.zxing.integration.android.IntentIntegrator
 import java.time.LocalDate
 import java.util.Calendar
@@ -77,9 +79,24 @@ class Venta_Carrito : AppCompatActivity() {
         }else{
             binding.btnConfirmarVenta.isEnabled = true
         }
-
+        cargarImagen()
     }
 
+    private fun cargarImagen(){
+        val storageReference = Firebase.storage.getReferenceFromUrl("gs://freshmetryx-aa049.appspot.com")
+        val imageRef = storageReference.child("/${correo}/photos/logo.jpg")
+
+
+        imageRef.downloadUrl.addOnSuccessListener { downloadUrl ->
+            // Use Glide to load the image into the ImageView
+            Glide.with(this@Venta_Carrito)
+                .load(downloadUrl)
+                .into(binding.iconUserVentacarrito)
+        }.addOnFailureListener {
+            // Handle any errors
+            Toast.makeText(this, "Error al cargar la imagen", Toast.LENGTH_SHORT).show()
+        }
+    }
     override fun onResume() {
         super.onResume()
         cargarNegocio()
@@ -121,6 +138,7 @@ class Venta_Carrito : AppCompatActivity() {
                     docId = document.id
                     binding.txtvNombreNegocioVC.text = document.getString("nombre_negocio")
                     binding.txtvNombreClienteVC.text = document.getString("nombre_cliente")
+                    cargarImagen()
                 }
             }
             .addOnFailureListener { exception ->

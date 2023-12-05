@@ -7,11 +7,13 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.freshmetryx.databinding.ActivityMainBinding
 import com.freshmetryx.databinding.ActivityProductoAgregarBinding
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import com.google.zxing.integration.android.IntentIntegrator
 
 class Producto_Agregar : AppCompatActivity() {
@@ -46,11 +48,13 @@ class Producto_Agregar : AppCompatActivity() {
         binding.btnAgregarProducto.setOnClickListener {
             agregarDatos()
         }
+        cargarImagen()
     }
 
     override fun onResume() {
         super.onResume()
         cargarNegocio()
+        cargarImagen()
     }
     private fun cargarNegocio(){
         //Mostrar datos del negocio
@@ -62,6 +66,7 @@ class Producto_Agregar : AppCompatActivity() {
                     docId = document.id
                     binding.txtvNombreNegocioAP.text = document.getString("nombre_negocio")
                     binding.txtvNombreClienteAP.text = document.getString("nombre_cliente")
+                    cargarImagen()
                 }
             }
             .addOnFailureListener { exception ->
@@ -69,6 +74,21 @@ class Producto_Agregar : AppCompatActivity() {
             }
     }
 
+    private fun cargarImagen(){
+        val storageReference = Firebase.storage.getReferenceFromUrl("gs://freshmetryx-aa049.appspot.com")
+        val imageRef = storageReference.child("/${correo}/photos/logo.jpg")
+
+
+        imageRef.downloadUrl.addOnSuccessListener { downloadUrl ->
+            // Use Glide to load the image into the ImageView
+            Glide.with(this@Producto_Agregar)
+                .load(downloadUrl)
+                .into(binding.imageView14)
+        }.addOnFailureListener {
+            // Handle any errors
+            Toast.makeText(this, "Error al cargar la imagen", Toast.LENGTH_SHORT).show()
+        }
+    }
     /*
     Esta funcion inicia la biblioteca del scanner, ademas de configurar el tipo de codigo que se escaneara
      */

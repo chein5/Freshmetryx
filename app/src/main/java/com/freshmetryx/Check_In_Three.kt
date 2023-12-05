@@ -5,10 +5,12 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.freshmetryx.databinding.ActivityCheckInThreeBinding
 import com.freshmetryx.databinding.ActivityCheckInTwoBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class Check_In_Three : AppCompatActivity() {
     private lateinit var correo :String
@@ -30,13 +32,28 @@ class Check_In_Three : AppCompatActivity() {
 
         //mostrar datos del negocio
         cargarNegocio()
-
+        cargarImagen()
         binding.ibtnGuardarCheck3.setOnClickListener {
             guardarDatos()
         }
 
     }
 
+    private fun cargarImagen(){
+        val storageReference = Firebase.storage.getReferenceFromUrl("gs://freshmetryx-aa049.appspot.com")
+        val imageRef = storageReference.child("/${correo}/photos/logo.jpg")
+
+
+        imageRef.downloadUrl.addOnSuccessListener { downloadUrl ->
+            // Use Glide to load the image into the ImageView
+            Glide.with(this@Check_In_Three)
+                .load(downloadUrl)
+                .into(binding.imageView27)
+        }.addOnFailureListener {
+            // Handle any errors
+            Toast.makeText(this, "Error al cargar la imagen", Toast.LENGTH_SHORT).show()
+        }
+    }
     //Mostrar datos del negocio
     private fun cargarNegocio(){
         val db = Firebase.firestore
@@ -46,6 +63,7 @@ class Check_In_Three : AppCompatActivity() {
                     docId = document.id
                     binding.txtvNombreNegocioC3.text = document.getString("nombre_negocio")
                     binding.txtvNombreClienteC3.text = document.getString("nombre_cliente")
+                    cargarImagen()
                 }
             }
             .addOnFailureListener { exception ->

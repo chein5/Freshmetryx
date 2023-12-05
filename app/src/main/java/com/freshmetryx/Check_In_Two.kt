@@ -8,6 +8,7 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.widget.Toast
 import androidx.core.content.FileProvider
+import com.bumptech.glide.Glide
 import com.freshmetryx.databinding.ActivityCheckInTwoBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -44,6 +45,7 @@ class Check_In_Two : AppCompatActivity() {
 
         //Mostrar datos del negocio
         cargarNegocio()
+        cargarImagen()
 
         binding.ibtnActivarCamaraC2.setOnClickListener {
             startCamera()
@@ -64,6 +66,7 @@ class Check_In_Two : AppCompatActivity() {
                     docId = document.id
                     binding.txtvNombreNegocioC2.text = document.getString("nombre_negocio")
                     binding.txtvNombreClienteC2.text = document.getString("nombre_cliente")
+                    cargarImagen()
                 }
             }
             .addOnFailureListener { exception ->
@@ -71,6 +74,21 @@ class Check_In_Two : AppCompatActivity() {
             }
     }
 
+    private fun cargarImagen(){
+        val storageReference = Firebase.storage.getReferenceFromUrl("gs://freshmetryx-aa049.appspot.com")
+        val imageRef = storageReference.child("/${correo}/photos/logo.jpg")
+
+
+        imageRef.downloadUrl.addOnSuccessListener { downloadUrl ->
+            // Use Glide to load the image into the ImageView
+            Glide.with(this@Check_In_Two)
+                .load(downloadUrl)
+                .into(binding.imageView25)
+        }.addOnFailureListener {
+            // Handle any errors
+            Toast.makeText(this, "Error al cargar la imagen", Toast.LENGTH_SHORT).show()
+        }
+    }
     private fun startCamera() {
         if (!isImageUploaded) {
             val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)

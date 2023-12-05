@@ -15,6 +15,7 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.FileProvider
+import com.bumptech.glide.Glide
 import com.freshmetryx.databinding.ActivityCheckInOneBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -49,7 +50,7 @@ class Check_In_One : AppCompatActivity() {
 
         //Cargar datos del negocio
         cargarNegocio()
-
+        cargarImagen()
         //Iniciar el modulo de camara para guardar registros
         binding.ibtnActivarCamaraCI1.setOnClickListener {
             startCamera()
@@ -131,7 +132,21 @@ class Check_In_One : AppCompatActivity() {
 
         }
 
+    private fun cargarImagen(){
+        val storageReference = Firebase.storage.getReferenceFromUrl("gs://freshmetryx-aa049.appspot.com")
+        val imageRef = storageReference.child("/${correo}/photos/logo.jpg")
 
+
+        imageRef.downloadUrl.addOnSuccessListener { downloadUrl ->
+            // Use Glide to load the image into the ImageView
+            Glide.with(this@Check_In_One)
+                .load(downloadUrl)
+                .into(binding.imageView23)
+        }.addOnFailureListener {
+            // Handle any errors
+            Toast.makeText(this, "Error al cargar la imagen", Toast.LENGTH_SHORT).show()
+        }
+    }
     //Mostrar datos del negocio
     private fun cargarNegocio(){
         val db = Firebase.firestore
@@ -141,6 +156,7 @@ class Check_In_One : AppCompatActivity() {
                     docId = document.id
                     binding.txtvNombreNegocioAC1.text = document.getString("nombre_negocio")
                     binding.txtvNombreClienteAC1.text = document.getString("nombre_cliente")
+                    cargarImagen()
                 }
             }
             .addOnFailureListener { exception ->
