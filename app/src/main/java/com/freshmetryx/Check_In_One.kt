@@ -236,7 +236,8 @@ class Check_In_One : AppCompatActivity() {
         val selectedRadioButton = findViewById<RadioButton>(selectedRadioButtonId)
         val data = hashMapOf(
             "proveedor" to binding.spinner2.selectedItem.toString(),
-            "entrega_boleta" to selectedRadioButton.text.toString()
+            "entrega_boleta" to selectedRadioButton.text.toString(),
+            "fecha" to com.google.firebase.firestore.FieldValue.serverTimestamp()
         )
 
         // If the radio button is set to true, add the image URL to the data

@@ -94,6 +94,7 @@ class Check_In_Three : AppCompatActivity() {
             .addOnSuccessListener {
                 Toast.makeText(this, "Se completo el check in", Toast.LENGTH_SHORT).show()
                 var intent = Intent(this, Home::class.java)
+                intent.putExtra("correo", correo)
                 startActivity(intent)
 
 
