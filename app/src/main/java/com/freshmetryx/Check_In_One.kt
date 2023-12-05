@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
+import android.widget.RadioButton
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -33,7 +34,6 @@ class Check_In_One : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_check_in_one)
-        val spinner = findViewById<Spinner>(R.id.spinner2)
         val db = Firebase.firestore
         val items = ArrayList<String>()
 
@@ -47,66 +47,90 @@ class Check_In_One : AppCompatActivity() {
         correo = ""
         correo = intent.getStringExtra("correo").toString()
 
+        //Cargar datos del negocio
+        cargarNegocio()
+
         //Iniciar el modulo de camara para guardar registros
         binding.ibtnActivarCamaraCI1.setOnClickListener {
             startCamera()
         }
 
         binding.ibtnSiguienteChech1.setOnClickListener {
-            guardarDatosPT1()
+            guardarDatos()
         }
+
         db.collection("clientes").whereEqualTo("correo", correo).get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
                     docId = document.id
-                    // buscar los datos en la BD
-                    db.collection("clientes").document(docId).collection("Proveedores").get().addOnSuccessListener { documents ->
-                        for (document in documents) {
-                            items.add(document.getString("nombre")!!)
-                        }
-                        //agregar un dato nuevo
-                        items.add("Agregar Proveedor")
 
-                        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, items)
-                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                        spinner.adapter = adapter
-                    }
+                    db.collection("clientes").document(docId).collection("Proveedores").get()
+                        .addOnSuccessListener { documents ->
+                            val proveedoresList = ArrayList<String>()
+                            for (document in documents) {
+
+                                proveedoresList.add(document.getString("nombre")!!)
+                            }
+                            // Add an option to add a new "proveedor"
+                            proveedoresList.add("Agregar Proveedor")
+                            val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, proveedoresList)
+                            binding.spinner2.adapter = adapter
+
+                            binding.spinner2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                                    val selectedItem = parent.getItemAtPosition(position).toString()
+                                    // If the selected item is "Add new...", show an AlertDialog with an EditText to input the new "proveedor"
+                                    if (selectedItem == "Agregar Proveedor") {
+                                        val editText = EditText(this@Check_In_One)
+                                        AlertDialog.Builder(this@Check_In_One)
+                                            .setTitle("Nuevo Proveedor")
+                                            .setMessage("Nombre del nuevo proveedor")
+                                            .setView(editText)
+                                            .setPositiveButton("Agregar") { dialog, _ ->
+                                                val newProveedor = editText.text.toString()
+                                                // Add the new "proveedor" to Firestore
+                                                val data = hashMapOf("nombre" to newProveedor)
+                                                db.collection("clientes").document(docId).collection("Proveedores").add(data)
+                                                    .addOnSuccessListener {
+                                                        // Refresh the spinner data
+                                                        Toast.makeText(this@Check_In_One, "Proveedor agregado", Toast.LENGTH_SHORT).show()
+                                                        proveedoresList.add(proveedoresList.size - 1, newProveedor)
+                                                        (binding.spinner2.adapter as ArrayAdapter<String>).notifyDataSetChanged()
+                                                        dialog.dismiss()
+                                                    }
+                                                    .addOnFailureListener { e ->
+                                                        Toast.makeText(this@Check_In_One, "Error adding document: $e", Toast.LENGTH_SHORT).show()
+                                                        dialog.dismiss()
+                                                    }
+                                            }
+                                            .setNegativeButton("Cancelar") { dialog, _ ->
+                                                dialog.cancel()
+                                            }
+                                            .show()
+                                    }
+                                }
+
+                                override fun onNothingSelected(parent: AdapterView<*>) {
+                                    // Do nothing
+                                }
+                            }
+                        }
+
                 }
             }
             .addOnFailureListener { exception ->
                 Toast.makeText(this, "Error al cargar los datos del negocio", Toast.LENGTH_SHORT).show()
             }
 
-
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                val selectedItem = parent.getItemAtPosition(position).toString()
-                if (selectedItem == "Agregar Proveedor") {
-                    // mostrar un nuevo alert dialog para agregar
-                    val editText = EditText(this@Check_In_One)
-                    AlertDialog.Builder(this@Check_In_One)
-                        .setTitle("Agregar Proveedor")
-                        .setView(editText)
-                        .setPositiveButton("Agregar") { dialog, whichButton ->
-                            val newItem = editText.text.toString()
-                            // agregar el nuevo elemento a la BD
-                            db.collection("clientes").document("donde_rosa").collection("Proveedores").add(hashMapOf("nombre" to newItem))
-                                .addOnSuccessListener {
-                                    // cargar el spinner de nuevo
-                                    items.add(items.size - 1, newItem)
-                                    (spinner.adapter as ArrayAdapter<String>).notifyDataSetChanged()
-                                }
-                        }
-                        .setNegativeButton("Cancelar", null)
-                        .show()
-                }
+        binding.rdbNo.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                Toast.makeText(this, "Se ha seleccionado no boleta fisica", Toast.LENGTH_SHORT).show()
             }
-
-            override fun onNothingSelected(parent: AdapterView<*>) {
-
-            }
+            binding.ibtnActivarCamaraCI1.isEnabled = !isChecked
         }
-    }
+
+        }
+
 
     //Mostrar datos del negocio
     private fun cargarNegocio(){
@@ -173,7 +197,7 @@ class Check_In_One : AppCompatActivity() {
 
     private fun uploadImageToFirestore() {
         val storageReference = Firebase.storage.getReferenceFromUrl("gs://freshmetryx-aa049.appspot.com")
-        val imageRef = storageReference.child("/${correo}/images/${photoUri?.lastPathSegment}")
+        val imageRef = storageReference.child("/${correo}/images/boleta/${photoUri?.lastPathSegment}")
         val uploadTask = imageRef.putFile(photoUri!!)
 
         uploadTask.addOnSuccessListener {
@@ -184,40 +208,64 @@ class Check_In_One : AppCompatActivity() {
         }
     }
 
-    private fun guardarDatosPT1() {
-        val db = Firebase.firestore
-
-        // Get the selected item from the Spinner
-        val selectedItem = binding.spinner2.selectedItem.toString()
-
-        // Check the state of the CheckBox
-        val isRepartidorLlegaAlLocal = binding.checkBox.isChecked
-
-        // Check which RadioButton is selected in the RadioGroup
-        val isBoletaEntregada = when (binding.rdbgroupBoleta.checkedRadioButtonId) {
-            R.id.rdb_si -> true
-            R.id.rdb_no -> false
-            else -> false
+    private fun guardarDatos() {
+        // If the radio button is set to true and the image is not uploaded, show a Toast message and return
+        if (binding.rdbSi.isChecked && !isImageUploaded) {
+            Toast.makeText(this, "Por favor suba una foto", Toast.LENGTH_SHORT).show()
+            return
         }
 
-        // Get the name of the uploaded image
-        val imageName = photoUri?.lastPathSegment
-
-        // Create a new document in Firestore with this data
+        val db = Firebase.firestore
+        val selectedRadioButtonId = binding.rdbgroupBoleta.checkedRadioButtonId
+        val selectedRadioButton = findViewById<RadioButton>(selectedRadioButtonId)
         val data = hashMapOf(
-            "Proveedor" to selectedItem,
-            "RepartidorLlegaAlLocal" to isRepartidorLlegaAlLocal,
-            "BoletaEntregada" to isBoletaEntregada,
-            "Imagen" to imageName
+            "proveedor" to binding.spinner2.selectedItem.toString(),
+            "entrega_boleta" to selectedRadioButton.text.toString()
         )
 
-        db.collection("clientes").document(correo).collection("CheckIns").add(data)
-            .addOnSuccessListener {
-                var docID = it.id
-                Toast.makeText(this, "Data saved successfully", Toast.LENGTH_SHORT).show()
+        // If the radio button is set to true, add the image URL to the data
+        if (binding.rdbSi.isChecked) {
+            data["url_imgBoleta"] = photoUri.toString()
+        }
+
+        db.collection("clientes").whereEqualTo("correo", correo).get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    docId = document.id
+                    val newDocRef = db.collection("clientes").document(docId).collection("checkIn").document()
+                    newDocRef.set(data)
+                        .addOnSuccessListener {
+                            val newDocId = newDocRef.id // id del checkIn agregado
+                            Toast.makeText(this, "Datos guardados", Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this, Check_In_Two::class.java)
+                            intent.putExtra("correo", correo)
+                            intent.putExtra("idCheck", newDocId) // pasarle el id del nuevo CheckIn al intent
+                            startActivity(intent)
+                        }
+                        .addOnFailureListener { e ->
+                            Toast.makeText(this, "Error saving data: $e", Toast.LENGTH_SHORT).show()
+                        }
+                }
             }
             .addOnFailureListener { exception ->
-                Toast.makeText(this, "Error saving data: ${exception.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Error al cargar los datos del negocio", Toast.LENGTH_SHORT).show()
             }
+    }
+
+    override fun onBackPressed() {
+        if (isImageUploaded) {
+            val storageReference = Firebase.storage.getReferenceFromUrl("gs://freshmetryx-aa049.appspot.com")
+            val imageRef = storageReference.child("/${correo}/images/boleta/${photoUri?.lastPathSegment}")
+            imageRef.delete()
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Imagen borrada", Toast.LENGTH_SHORT).show()
+                    isImageUploaded = false
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "Error al borrar la foto: $e", Toast.LENGTH_SHORT).show()
+                }
+        }
+
+        super.onBackPressed()
     }
 }

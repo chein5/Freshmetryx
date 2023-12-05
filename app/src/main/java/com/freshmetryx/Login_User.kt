@@ -52,7 +52,6 @@ class Login_User : AppCompatActivity() {
             auth.signInWithEmailAndPassword(txtMail_Login.text.toString(), txtPass_Login.text.toString()).
                     addOnCompleteListener(this) {task ->
                         if (task.isSuccessful){
-                            Toast.makeText(baseContext, "Exito en el inicio de sesion",Toast.LENGTH_LONG).show()
                             Log.d(TAG, "Inicio de sesion exitoso")
                             val user = auth.currentUser
                             val correo= user?.email

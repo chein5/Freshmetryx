@@ -7,29 +7,17 @@
     tools:context=".Check_In_Two">
 
     <ImageView
-        android:id="@+id/imageView24"
+        android:id="@+id/asdasd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/bg_checkin_two" />
-
-    <RadioButton
-        android:id="@+id/rdb_no2"
-        android:layout_width="147dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="11dp"
-        android:text="No"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView72"
-        tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/textView72"
@@ -57,53 +45,88 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton5" />
+        app:layout_constraintTop_toBottomOf="@+id/ibtn_activarCamaraC2" />
 
-    <RadioButton
-        android:id="@+id/rdb_si2"
-        android:layout_width="135dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="8dp"
-        android:checked="true"
-        android:text="Si"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="360dp"
+        android:layout_height="109dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView72"
-        tools:ignore="TouchTargetSizeCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/textView72">
 
-    <RadioButton
-        android:id="@+id/rdb_si3"
-        android:layout_width="262dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="65dp"
-        android:layout_marginTop="10dp"
-        android:checked="true"
-        android:text="Si, estan todos."
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView73" />
+        <RadioButton
+            android:id="@+id/rdb_si2"
+            android:layout_width="135dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="8dp"
+            android:checked="true"
+            android:text="Si"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:ignore="TouchTargetSizeCheck" />
 
-    <RadioButton
-        android:id="@+id/rdb_si4"
-        android:layout_width="262dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="66dp"
-        android:layout_marginTop="13dp"
-        android:checked="false"
-        android:text="No, faltan productos."
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        <RadioButton
+            android:id="@+id/rdb_no2"
+            android:layout_width="147dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="11dp"
+            android:text="No"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:ignore="TouchTargetSizeCheck" />
+    </RadioGroup>
+
+    <ImageButton
+        android:id="@+id/ibtn_activarCamaraC2"
+        android:layout_width="343dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="16dp"
+        android:background="#00FFFFFF"
+        android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rdb_si3" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        app:srcCompat="@drawable/photo_btn"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup2"
+        android:layout_width="388dp"
+        android:layout_height="91dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView73">
+
+        <RadioButton
+            android:id="@+id/rdb_si3"
+            android:layout_width="262dp"
+            android:layout_height="49dp"
+            android:checked="true"
+            android:text="Si, estan todos."
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/rdb_si4"
+            android:layout_width="262dp"
+            android:layout_height="49dp"
+            android:checked="false"
+            android:text="No, faltan productos."
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </RadioGroup>
 
     <TextView
-        android:id="@+id/textView69"
+        android:id="@+id/txtv_nombreNegocioC2"
         android:layout_width="273dp"
         android:layout_height="37dp"
         android:layout_marginStart="37dp"
@@ -126,7 +149,7 @@
         app:srcCompat="@drawable/user_icon" />
 
     <TextView
-        android:id="@+id/textView70"
+        android:id="@+id/txtv_nombreClienteC2"
         android:layout_width="170dp"
         android:layout_height="25dp"
         android:layout_marginStart="37dp"
@@ -136,7 +159,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView69" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreNegocioC2" />
 
     <TextView
         android:id="@+id/textView71"
@@ -150,31 +173,18 @@
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView70" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreClienteC2" />
 
     <ImageButton
-        android:id="@+id/imageButton5"
-        android:layout_width="343dp"
-        android:layout_height="63dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="19dp"
-        android:background="#00FFFFFF"
-        android:scaleType="fitCenter"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rdb_no2"
-        app:srcCompat="@drawable/photo_btn"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <ImageButton
-        android:id="@+id/imageButton6"
+        android:id="@+id/ibtn_siguienteC2"
         android:layout_width="261dp"
         android:layout_height="72dp"
-        android:layout_marginStart="66dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="56dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rdb_si4"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2"
         app:srcCompat="@drawable/next_btn"
         tools:ignore="SpeakableTextPresentCheck" />
 

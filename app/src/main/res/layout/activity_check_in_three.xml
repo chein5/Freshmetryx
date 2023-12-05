@@ -59,7 +59,7 @@
         android:layout_marginTop="13dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
-        android:inputType="text"
+        android:inputType="number"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
@@ -75,6 +75,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="27dp"
         android:text="Total del pedido"
+        android:inputType="number"
         android:textAlignment="center"
         android:textColor="#0B0B0B"
         android:textSize="24sp"
@@ -97,7 +98,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtPedido" />
 
     <TextView
-        android:id="@+id/textView74"
+        android:id="@+id/txtv_nombreClienteC3"
         android:layout_width="273dp"
         android:layout_height="37dp"
         android:layout_marginStart="37dp"
@@ -110,7 +111,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView75"
+        android:id="@+id/txtv_nombreNegocioC3"
         android:layout_width="170dp"
         android:layout_height="25dp"
         android:layout_marginStart="37dp"
@@ -120,7 +121,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView74" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreClienteC3" />
 
     <ImageView
         android:id="@+id/imageView27"
@@ -144,10 +145,10 @@
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView75" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreNegocioC3" />
 
     <ImageButton
-        android:id="@+id/imageButton9"
+        android:id="@+id/ibtn_guardarCheck3"
         android:layout_width="281dp"
         android:layout_height="66dp"
         android:layout_marginStart="56dp"
