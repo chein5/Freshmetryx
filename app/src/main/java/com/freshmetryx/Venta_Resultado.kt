@@ -40,6 +40,7 @@ import java.io.FileOutputStream
 import java.io.OutputStream
 import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.Locale
 
 class Venta_Resultado : AppCompatActivity() {
 
@@ -117,9 +118,13 @@ class Venta_Resultado : AppCompatActivity() {
 
                                 PdfWriter.getInstance(document, outputStream)
                                 document.open()
+                                var fecha_hora = documentSnapshot.getTimestamp("fecha")
+                                val formatoFecha = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale("es", "ES"))
+                                val fechaFormateada = formatoFecha.format(fecha_hora!!.toDate())
 
                                 val data = documentSnapshot.data
-                                val paragraph = Paragraph(data.toString())
+                                val formattedData = formatDataForPdf(data)
+                                val paragraph = Paragraph(formattedData)
                                 document.add(paragraph)
 
                                 document.close()
@@ -142,6 +147,15 @@ class Venta_Resultado : AppCompatActivity() {
                 Toast.makeText(this, "Error al cargar los datos del negocio", Toast.LENGTH_SHORT).show()
             }
 
+    }
+
+    fun formatDataForPdf(data: Map<String, Any?>?): String {
+        // Customize this function to format your data as needed
+        val formattedData = StringBuilder()
+        data?.forEach { (key, value) ->
+            formattedData.append("$key: $value\n")
+        }
+        return formattedData.toString()
     }
     private fun requestStoragePermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
