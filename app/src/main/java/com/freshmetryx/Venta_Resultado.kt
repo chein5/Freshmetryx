@@ -36,6 +36,7 @@ import com.google.firebase.storage.ktx.storage
 import com.itextpdf.text.Chunk
 import com.itextpdf.text.Document
 import com.itextpdf.text.Font
+import com.itextpdf.text.Image
 import com.itextpdf.text.Paragraph
 import com.itextpdf.text.pdf.PdfWriter
 import java.io.File
@@ -92,8 +93,6 @@ class Venta_Resultado : AppCompatActivity() {
         }
     }
 
-
-
     @RequiresApi(Build.VERSION_CODES.Q)
     fun exportToPdf(idVenta: String) {
         val db = Firebase.firestore
@@ -127,23 +126,33 @@ class Venta_Resultado : AppCompatActivity() {
                                         PdfWriter.getInstance(document, outputStream)
                                         document.open()
 
-                                        // Contenido del PDF
+                                        // Agregar contenido al PDF
                                         val data = documentSnapshot.data
                                         if (data != null) {
                                             // Configurar el tamaño y estilo del texto
-                                            val font = Font(Font.FontFamily.HELVETICA, 20f, Font.BOLD)
+                                            val fontTitulo = Font(Font.FontFamily.HELVETICA, 24f, Font.BOLD)
+                                            val fontSubtitulo = Font(Font.FontFamily.HELVETICA, 18f, Font.BOLD)
+                                            val fontNormal = Font(Font.FontFamily.HELVETICA, 14f, Font.NORMAL)
 
                                             // Agregar contenido al PDF
-                                            val paragraph = Paragraph().apply {
+                                            val paragraphTitulo = Paragraph().apply {
                                                 // Agregar salto de línea antes de la siguiente línea
                                                 spacingBefore = 10f
-                                                add(Chunk("Detalle de Venta", Font(Font.FontFamily.HELVETICA, 24f, Font.BOLD)))
-                                                add(Chunk("\n")) // Salto de línea
-                                                add(Chunk("Fecha de Venta: ${currentDate}", Font(Font.FontFamily.HELVETICA, 16f, Font.NORMAL)))
-                                                add(Chunk("\n\n")) // Dos saltos de línea
+                                                //Alinear
+                                                alignment = Paragraph.ALIGN_CENTER
+                                                add(Chunk("Boleta Electrónica Freshmetryx", fontTitulo))
+                                                add(Chunk("\n\n\n\n")) // Salto de línea
+                                            }
+                                            document.add(paragraphTitulo)
 
-                                                // Agregar detalles de venta
-                                                add(Chunk("Detalles de Venta: \n", Font(Font.FontFamily.HELVETICA, 18f, Font.BOLD)))
+                                            val paragraphFecha = Paragraph().apply {
+                                                add(Chunk("Fecha de Venta: ${currentDate}", fontSubtitulo))
+                                                add(Chunk("\n\n")) // Dos saltos de línea
+                                            }
+                                            document.add(paragraphFecha)
+
+                                            val paragraphDetallesVenta = Paragraph().apply {
+                                                add(Chunk("Detalles de Venta: \n", fontSubtitulo))
 
                                                 // Obtener el mapa de productos
                                                 val productosList = documentSnapshot["productos"] as? ArrayList<Map<String, Any>>
@@ -152,16 +161,19 @@ class Venta_Resultado : AppCompatActivity() {
                                                     val cantidadProducto = detallesProducto["cantidad_producto"] as? Long
                                                     val precioProducto = detallesProducto["precio_producto"] as? Long
                                                     if (nombreProducto != null && cantidadProducto != null) {
-                                                        add(Chunk(" $nombreProducto: $cantidadProducto unidades, precio: $ ${precioProducto}", Font(Font.FontFamily.HELVETICA, 14f, Font.NORMAL)))
+                                                        add(Chunk("Producto: $nombreProducto \nCantidad: $cantidadProducto unidades \nPrecio: $ ${precioProducto}\n", fontNormal))
                                                         add(Chunk("\n")) // Salto de línea después de cada detalle
                                                     }
                                                 }
                                                 val total = documentSnapshot.get("total")
                                                 val total_cantProd = documentSnapshot.get("total_cantProd")
                                                 add(Chunk("\n\n")) // Dos saltos de línea
-                                                add(Chunk("Total General: $$total  Cantidad de productos: ${total_cantProd}", Font(Font.FontFamily.HELVETICA, 14f, Font.NORMAL)))
+
+                                                add(Chunk("Total de la Venta: \n", fontSubtitulo))
+                                                add(Chunk("\n")) // Salto de línea
+                                                add(Chunk("$$total + IVA incluido \nCantidad de productos del carrito: ${total_cantProd}", fontNormal))
                                             }
-                                            document.add(paragraph)
+                                            document.add(paragraphDetallesVenta)
 
                                             // Puedes continuar agregando más contenido según tus necesidades
 
