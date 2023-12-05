@@ -23,8 +23,8 @@
         android:id="@+id/textView72"
         android:layout_width="371dp"
         android:layout_height="44dp"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="37dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
         android:text="¿Existe algun producto dañado?"
         android:textAlignment="center"
         android:textColor="#0B0B0B"
@@ -37,8 +37,8 @@
         android:id="@+id/textView73"
         android:layout_width="370dp"
         android:layout_height="62dp"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="62dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
         android:text="¿Estan todos los productos solicitados?"
         android:textAlignment="center"
         android:textColor="#0B0B0B"
@@ -49,17 +49,17 @@
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="360dp"
-        android:layout_height="109dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="353dp"
+        android:layout_height="115dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView72">
 
         <RadioButton
             android:id="@+id/rdb_si2"
-            android:layout_width="135dp"
-            android:layout_height="44dp"
+            android:layout_width="335dp"
+            android:layout_height="43dp"
             android:layout_marginStart="11dp"
             android:layout_marginTop="8dp"
             android:checked="true"
@@ -71,7 +71,7 @@
 
         <RadioButton
             android:id="@+id/rdb_no2"
-            android:layout_width="147dp"
+            android:layout_width="match_parent"
             android:layout_height="46dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="11dp"
@@ -80,14 +80,15 @@
             android:textSize="20sp"
             android:textStyle="bold"
             tools:ignore="TouchTargetSizeCheck" />
+
     </RadioGroup>
 
     <ImageButton
         android:id="@+id/ibtn_activarCamaraC2"
         android:layout_width="343dp"
         android:layout_height="63dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
@@ -97,32 +98,35 @@
 
     <RadioGroup
         android:id="@+id/radioGroup2"
-        android:layout_width="388dp"
-        android:layout_height="91dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="326dp"
+        android:layout_height="103dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="21dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView73">
 
         <RadioButton
             android:id="@+id/rdb_si3"
-            android:layout_width="262dp"
-            android:layout_height="49dp"
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
             android:checked="true"
             android:text="Si, estan todos."
             android:textAlignment="center"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <RadioButton
             android:id="@+id/rdb_si4"
-            android:layout_width="262dp"
-            android:layout_height="49dp"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
             android:checked="false"
             android:text="No, faltan productos."
             android:textAlignment="center"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="TouchTargetSizeCheck" />
+
     </RadioGroup>
 
     <TextView
@@ -179,8 +183,8 @@
         android:id="@+id/ibtn_siguienteC2"
         android:layout_width="261dp"
         android:layout_height="72dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="32dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"

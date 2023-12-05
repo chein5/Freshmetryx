@@ -47,12 +47,13 @@ class Menu_Gestion : AppCompatActivity() {
         }
 
         //iniciar el menu de gestion del perfil
+        /*
         binding.ibtnGestionPerfilPanel.setOnClickListener {
             val intent = Intent(this, Gestion_Perfil::class.java)
             intent.putExtra("correo", correo)
             startActivity(intent)
         }
-
+        */
         //iniciar el menu de gestion de membresia
         binding.ibtnGestionMembresiaPanel.setOnClickListener {
             val intent = Intent(this, Gestion_Membresia::class.java)

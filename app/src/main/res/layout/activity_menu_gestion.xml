@@ -72,8 +72,8 @@
         android:id="@+id/ibtn_gestionNegocioPanel"
         android:layout_width="339dp"
         android:layout_height="171dp"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="39dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="76dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,28 +82,15 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
-        android:id="@+id/ibtn_gestionPerfilPanel"
-        android:layout_width="338dp"
-        android:layout_height="156dp"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="12dp"
+        android:id="@+id/ibtn_gestionMembresiaPanel"
+        android:layout_width="337dp"
+        android:layout_height="167dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="36dp"
         android:background="#00FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ibtn_gestionNegocioPanel"
-        app:srcCompat="@drawable/perfil_btn"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <ImageButton
-        android:id="@+id/ibtn_gestionMembresiaPanel"
-        android:layout_width="337dp"
-        android:layout_height="167dp"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="14dp"
-        android:background="#00FFFFFF"
-        android:scaleType="fitCenter"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ibtn_gestionPerfilPanel"
         app:srcCompat="@drawable/membresia_btn"
         tools:ignore="SpeakableTextPresentCheck" />
 
