@@ -158,6 +158,7 @@ class Venta_Resultado : AppCompatActivity() {
                                                 }
                                                 val total = documentSnapshot.get("total")
                                                 val total_cantProd = documentSnapshot.get("total_cantProd")
+                                                add(Chunk("\n\n")) // Dos saltos de línea
                                                 add(Chunk("Total General: $$total  Cantidad de productos: ${total_cantProd}", Font(Font.FontFamily.HELVETICA, 14f, Font.NORMAL)))
                                             }
                                             document.add(paragraph)
