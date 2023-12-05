@@ -53,7 +53,7 @@ class Venta_Listar : AppCompatActivity() {
         db.collection("clientes").whereEqualTo("correo", correo).get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
-                    Log.e("TAG", "${document.id} => ${document.data}")
+
                     docId = document.id
                     binding.txtvNombreNegocioLV.text = document.getString("nombre_negocio")
                     binding.txtvNombreClienteLV.text = document.getString("nombre_cliente")

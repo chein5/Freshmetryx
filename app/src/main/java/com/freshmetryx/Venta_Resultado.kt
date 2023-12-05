@@ -59,14 +59,13 @@ class Venta_Resultado : AppCompatActivity() {
         correo = intent.getStringExtra("correo").toString()
         idVenta = intent.getStringExtra("id").toString()
 
-        Toast.makeText(this, "Correo: "+correo, Toast.LENGTH_SHORT).show()
-        Toast.makeText(this, "ID: "+idVenta, Toast.LENGTH_SHORT).show()
 
         //solicitarPermisos()
         //Volver al Menu de Ventas
         btnVolverCompra = findViewById(R.id.otraventa_button)
         btnVolverCompra.setOnClickListener {
             val intent = Intent(this, Menu_Ventas::class.java)
+            intent.putExtra("correo", correo)
             startActivity(intent)
         }
 
@@ -81,69 +80,6 @@ class Venta_Resultado : AppCompatActivity() {
         }
     }
 
-    /*
-    fun generarPDF(){
-
-        //Variables para el PDF
-        var pdfDocument = PdfDocument()
-        var paint = Paint()
-        var titulo = TextPaint()
-        var descripcion = TextPaint()
-
-        //Dimensiones del PDF
-        var paginaInfo = PdfDocument.PageInfo.Builder(816, 1054, 1).create() //Ancho x Alto x Paginas
-        var pagina1 = pdfDocument.startPage(paginaInfo)
-
-        var canvas = pagina1.canvas
-
-        //Agregar una imagen al PDF
-        var bitmap = BitmapFactory.decodeResource(resources, R.drawable.app_icon)
-        var bitmapScaled = Bitmap.createScaledBitmap(bitmap, 80, 80, false) //Dimensiones de la imagen
-        canvas.drawBitmap(bitmapScaled, 20f, 20f, paint)
-
-        //Agregar texto al PDF
-        titulo.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD))
-        titulo.setTextSize(20f)
-        canvas.drawText(tituloText, 120f, 60f, titulo)
-
-        //Descripcion del PDF
-        descripcion.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL))
-        descripcion.setTextSize(15f)
-
-        //Salto de linea en la descripcion
-        var arrDescripcion = descripcionText.split("\n")
-        var y = 100f
-        for (linea in arrDescripcion) {
-            canvas.drawText(linea, 120f, y, descripcion)
-            y += descripcion.descent() - descripcion.ascent()
-        }
-
-        pdfDocument.finishPage(pagina1)
-
-        //Guardar el PDF
-        val file = File(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), "Boleta.pdf")
-        try {
-            pdfDocument.writeTo(FileOutputStream(file))
-            Toast.makeText(this, "PDF Descargado", Toast.LENGTH_LONG).show()
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-
-        pdfDocument.close()
-
-    }
-
-    //Solicitar permisos para crear el pdf
-    fun solicitarPermisos() {
-        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), REQUEST_CODE)
-        Toast.makeText(this, "Permisos concedidos", Toast.LENGTH_LONG).show()
-    }
-
-
-
-// ...
-
-     */
 
     @RequiresApi(Build.VERSION_CODES.Q)
     fun exportToPdf(idVenta:String) {

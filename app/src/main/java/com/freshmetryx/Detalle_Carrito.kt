@@ -72,7 +72,6 @@ class Detalle_Carrito : AppCompatActivity() {
                             .get()
                             .addOnSuccessListener { document ->
                                 if (document != null && document.exists()) {
-                                    Toast.makeText(this, "Documento obtenido: "+id, Toast.LENGTH_SHORT).show()
                                     val productos = document["productos"] as List<Map<String, Any>>
                                     Log.e("PRODUCTOS", "$productos")
                                     // Calcular el total general

@@ -18,7 +18,7 @@
         app:srcCompat="@drawable/bg_checkin_menu" />
 
     <TextView
-        android:id="@+id/textView51"
+        android:id="@+id/txtv_nombreNegocioMC"
         android:layout_width="273dp"
         android:layout_height="37dp"
         android:layout_marginStart="37dp"
@@ -32,7 +32,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView53"
+        android:id="@+id/txtv_nombreClienteMC"
         android:layout_width="170dp"
         android:layout_height="25dp"
         android:layout_marginStart="37dp"
@@ -42,7 +42,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView51" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreNegocioMC" />
 
     <ImageView
         android:id="@+id/imageView8"
@@ -66,7 +66,7 @@
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView53" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreClienteMC" />
 
     <ImageButton
         android:id="@+id/Ibtn_historiapedidoMenu"
@@ -95,7 +95,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/ibtn_volverMenuCheckMenu"
         android:layout_width="334dp"
         android:layout_height="105dp"
         android:layout_marginStart="33dp"
