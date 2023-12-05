@@ -28,7 +28,7 @@
         app:srcCompat="@drawable/user_icon" />
 
     <TextView
-        android:id="@+id/textView61"
+        android:id="@+id/txtv_nombreClienteHC"
         android:layout_width="273dp"
         android:layout_height="37dp"
         android:layout_marginStart="37dp"
@@ -41,7 +41,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView62"
+        android:id="@+id/txtv_nombreNegocioHC"
         android:layout_width="170dp"
         android:layout_height="25dp"
         android:layout_marginStart="37dp"
@@ -51,7 +51,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView61" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreClienteHC" />
 
     <TextView
         android:id="@+id/textView63"
@@ -65,7 +65,7 @@
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView62" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreNegocioHC" />
 
     <ListView
         android:id="@+id/list_hcheckin"
@@ -76,5 +76,15 @@
         android:background="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView63" />
+
+    <ImageView
+        android:id="@+id/imageView24"
+        android:layout_width="368dp"
+        android:layout_height="391dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="52dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView13"
+        app:srcCompat="@drawable/app_icon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
