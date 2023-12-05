@@ -126,7 +126,7 @@
         app:layout_constraintHorizontal_bias="0.116"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_nombreOwnerEditar"
-        app:srcCompat="@drawable/confirm_btn"
+        app:srcCompat="@drawable/back_btn2"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
@@ -140,5 +140,18 @@
         android:text="Name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_nombreNegocioEditar" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="350dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="22dp"
+        android:background="#00FFFFFF"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ibtn_editarDatosEditar"
+        app:srcCompat="@drawable/photo2_btn"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
