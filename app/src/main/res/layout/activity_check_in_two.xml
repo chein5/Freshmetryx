@@ -17,7 +17,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/bg_checkin_two" />
+        app:srcCompat="@drawable/bg_checkin_two"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/textView72"
@@ -31,7 +32,8 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView71" />
+        app:layout_constraintTop_toBottomOf="@+id/textView71"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <TextView
         android:id="@+id/textView73"
@@ -45,7 +47,8 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ibtn_activarCamaraC2" />
+        app:layout_constraintTop_toBottomOf="@+id/ibtn_activarCamaraC2"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -67,7 +70,7 @@
             android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="bold"
-            tools:ignore="TouchTargetSizeCheck" />
+            tools:ignore="HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
 
         <RadioButton
             android:id="@+id/rdb_no2"
@@ -79,7 +82,7 @@
             android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="bold"
-            tools:ignore="TouchTargetSizeCheck" />
+            tools:ignore="HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
 
     </RadioGroup>
 
@@ -94,7 +97,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup"
         app:srcCompat="@drawable/photo_btn"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
     <RadioGroup
         android:id="@+id/radioGroup2"
@@ -114,7 +117,7 @@
             android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="bold"
-            tools:ignore="TouchTargetSizeCheck" />
+            tools:ignore="HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
 
         <RadioButton
             android:id="@+id/rdb_si4"
@@ -125,7 +128,7 @@
             android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="bold"
-            tools:ignore="TouchTargetSizeCheck" />
+            tools:ignore="HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
 
     </RadioGroup>
 
@@ -140,7 +143,8 @@
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <ImageView
         android:id="@+id/imageView25"
@@ -150,7 +154,8 @@
         android:layout_marginEnd="27dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/user_icon" />
+        app:srcCompat="@drawable/user_icon"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/txtv_nombreClienteC2"
@@ -163,7 +168,8 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreNegocioC2" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreNegocioC2"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <TextView
         android:id="@+id/textView71"
@@ -177,7 +183,8 @@
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreClienteC2" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreClienteC2"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <ImageButton
         android:id="@+id/ibtn_siguienteC2"
@@ -190,6 +197,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup2"
         app:srcCompat="@drawable/next_btn"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,7 +17,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/bg_home" />
+        app:srcCompat="@drawable/bg_home"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/txtv_nombreClietneGM"
@@ -30,7 +31,8 @@
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <TextView
         android:id="@+id/txtv_nombreNegocioGM"
@@ -44,7 +46,8 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreClietneGM" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreClietneGM"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <ImageView
         android:id="@+id/imageView37"
@@ -54,7 +57,8 @@
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toEndOf="@+id/txtv_nombreClietneGM"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/user_icon" />
+        app:srcCompat="@drawable/user_icon"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/textView91"
@@ -68,7 +72,8 @@
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreNegocioGM" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreNegocioGM"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <TextView
         android:id="@+id/textView92"
@@ -82,7 +87,8 @@
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView91" />
+        app:layout_constraintTop_toBottomOf="@+id/textView91"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <TextView
         android:id="@+id/textView93"
@@ -95,7 +101,8 @@
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView92" />
+        app:layout_constraintTop_toBottomOf="@+id/textView92"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <EditText
         android:id="@+id/txt_tipoMembresia"
@@ -114,7 +121,7 @@
         android:textColorLink="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView93"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/imageButton33"
@@ -127,6 +134,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_tipoMembresia"
         app:srcCompat="@drawable/membresiaestado_btn"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

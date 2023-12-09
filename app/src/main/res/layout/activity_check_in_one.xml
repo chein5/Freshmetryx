@@ -16,7 +16,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/bg_checkin_one" />
+        app:srcCompat="@drawable/bg_checkin_one"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/textView68"
@@ -30,7 +31,8 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner2"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <Spinner
         android:id="@+id/spinner2"
@@ -53,7 +55,8 @@
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <ImageView
         android:id="@+id/imageView23"
@@ -63,7 +66,8 @@
         android:layout_marginEnd="23dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/user_icon" />
+        app:srcCompat="@drawable/user_icon"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/textView67"
@@ -77,7 +81,8 @@
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreClienteAC1" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreClienteAC1"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <TextView
         android:id="@+id/textView"
@@ -91,7 +96,8 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView67" />
+        app:layout_constraintTop_toBottomOf="@+id/textView67"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <TextView
         android:id="@+id/txtv_nombreClienteAC1"
@@ -104,7 +110,8 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreNegocioAC1" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreNegocioAC1"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <RadioGroup
         android:id="@+id/rdbgroup_boleta"
@@ -115,7 +122,8 @@
         android:checkedButton="@id/rdb_si"
         android:gravity="left"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView68">
+        app:layout_constraintTop_toBottomOf="@+id/textView68"
+        tools:ignore="RtlHardcoded">
 
         <RadioButton
             android:id="@+id/rdb_si"
@@ -128,7 +136,7 @@
             android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="bold"
-            tools:ignore="TouchTargetSizeCheck" />
+            tools:ignore="HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
 
         <RadioButton
             android:id="@+id/rdb_no"
@@ -140,7 +148,7 @@
             android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="bold"
-            tools:ignore="TouchTargetSizeCheck" />
+            tools:ignore="HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
 
     </RadioGroup>
 
@@ -155,7 +163,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rdbgroup_boleta"
         app:srcCompat="@drawable/cam_btn"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/ibtn_siguienteChech1"
@@ -168,6 +176,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ibtn_activarCamaraCI1"
         app:srcCompat="@drawable/next_btn"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

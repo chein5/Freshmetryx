@@ -17,7 +17,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/bg_detail_sell" />
+        app:srcCompat="@drawable/bg_detail_sell"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/txt_totalDetalle"
@@ -34,7 +35,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView24" />
+        app:layout_constraintTop_toBottomOf="@+id/textView24"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <TextView
         android:id="@+id/txtv_nombreNegocioDC"
@@ -47,7 +49,8 @@
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <TextView
         android:id="@+id/txt_cantProdDet"
@@ -64,7 +67,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView19" />
+        app:layout_constraintTop_toBottomOf="@+id/textView19"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <TextView
         android:id="@+id/txt_subTotDet"
@@ -81,7 +85,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_cantProdDet" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_cantProdDet"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/textView24"
@@ -97,7 +102,8 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_subTotDet" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_subTotDet"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <TextView
         android:id="@+id/textView19"
@@ -114,7 +120,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreClienteDC" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreClienteDC"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <TextView
         android:id="@+id/txtv_nombreClienteDC"
@@ -128,7 +135,8 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreNegocioDC" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreNegocioDC"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <ImageView
         android:id="@+id/icon_user_ventacarrito2"
@@ -138,7 +146,8 @@
         android:layout_marginEnd="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/user_icon" />
+        app:srcCompat="@drawable/user_icon"
+        tools:ignore="ContentDescription" />
 
     <ImageButton
         android:id="@+id/btnListoCompra"
@@ -153,7 +162,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_totalDetalle"
         app:srcCompat="@drawable/ready_btn"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/btn_volverDetalle"
@@ -168,6 +177,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_totalDetalle"
         app:srcCompat="@drawable/back_btn"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

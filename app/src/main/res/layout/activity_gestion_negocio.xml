@@ -15,7 +15,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/bg_homesell" />
+        app:srcCompat="@drawable/bg_homesell"
+        tools:ignore="ContentDescription" />
 
     <EditText
         android:id="@+id/txt_nombreNegocioEditar"
@@ -32,7 +33,8 @@
         android:textColorHint="#FFFFFF"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView84" />
+        app:layout_constraintTop_toBottomOf="@+id/textView84"
+        tools:ignore="Autofill,HardcodedText" />
 
     <EditText
         android:id="@+id/txt_nombreOwnerEditar"
@@ -49,7 +51,8 @@
         android:textColorHint="#FFFFFF"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_rubroNegocioEditar" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_rubroNegocioEditar"
+        tools:ignore="Autofill,HardcodedText" />
 
     <TextView
         android:id="@+id/txtv_nombreNegocioEdicion"
@@ -62,7 +65,8 @@
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <TextView
         android:id="@+id/txtv_nombreUsuarioEdicion"
@@ -76,7 +80,8 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreNegocioEdicion" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreNegocioEdicion"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <ImageView
         android:id="@+id/imageView33"
@@ -86,7 +91,8 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/user_icon" />
+        app:srcCompat="@drawable/user_icon"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/textView84"
@@ -100,7 +106,8 @@
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreUsuarioEdicion" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreUsuarioEdicion"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <ImageButton
         android:id="@+id/ibtn_editarDatosEditar"
@@ -113,7 +120,7 @@
         app:layout_constraintStart_toEndOf="@+id/ibtn_volverEditarDatos"
         app:layout_constraintTop_toBottomOf="@+id/txt_nombreOwnerEditar"
         app:srcCompat="@drawable/edit_btn"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck,ImageContrastCheck" />
 
     <ImageButton
         android:id="@+id/ibtn_volverEditarDatos"
@@ -127,7 +134,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_nombreOwnerEditar"
         app:srcCompat="@drawable/back_btn2"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck,ImageContrastCheck" />
 
     <EditText
         android:id="@+id/txt_rubroNegocioEditar"
@@ -139,7 +146,8 @@
         android:inputType="text"
         android:text="Name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_nombreNegocioEditar" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_nombreNegocioEditar"
+        tools:ignore="Autofill,HardcodedText,TextContrastCheck" />
 
     <ImageButton
         android:id="@+id/imageButton"
@@ -152,6 +160,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ibtn_editarDatosEditar"
         app:srcCompat="@drawable/photo2_btn"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

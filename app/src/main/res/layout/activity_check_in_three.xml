@@ -15,7 +15,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/bg_checkin_three" />
+        app:srcCompat="@drawable/bg_checkin_three"
+        tools:ignore="ContentDescription" />
 
     <EditText
         android:id="@+id/txtNombreRepartidor"
@@ -32,7 +33,8 @@
         android:textColorHint="#FFFFFF"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView76" />
+        app:layout_constraintTop_toBottomOf="@+id/textView76"
+        tools:ignore="Autofill,HardcodedText" />
 
     <EditText
         android:id="@+id/txtFirma"
@@ -49,7 +51,7 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView79"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="Autofill,SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/txtPedido"
@@ -66,7 +68,7 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView78"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="Autofill,SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/textView78"
@@ -74,14 +76,15 @@
         android:layout_height="44dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="27dp"
-        android:text="Total del pedido"
         android:inputType="number"
+        android:text="Total del pedido"
         android:textAlignment="center"
         android:textColor="#0B0B0B"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNombreRepartidor" />
+        app:layout_constraintTop_toBottomOf="@+id/txtNombreRepartidor"
+        tools:ignore="HardcodedText,TextSizeCheck,TextViewEdits,TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/textView79"
@@ -95,7 +98,8 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPedido" />
+        app:layout_constraintTop_toBottomOf="@+id/txtPedido"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <TextView
         android:id="@+id/txtv_nombreClienteC3"
@@ -108,7 +112,8 @@
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <TextView
         android:id="@+id/txtv_nombreNegocioC3"
@@ -121,7 +126,8 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreClienteC3" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreClienteC3"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <ImageView
         android:id="@+id/imageView27"
@@ -131,7 +137,8 @@
         android:layout_marginEnd="27dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/user_icon" />
+        app:srcCompat="@drawable/user_icon"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/textView76"
@@ -145,7 +152,8 @@
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreNegocioC3" />
+        app:layout_constraintTop_toBottomOf="@+id/txtv_nombreNegocioC3"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <ImageButton
         android:id="@+id/ibtn_guardarCheck3"
@@ -158,6 +166,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtFirma"
         app:srcCompat="@drawable/complete_btn"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
